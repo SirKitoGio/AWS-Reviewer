@@ -1,5 +1,5 @@
 import { domains, examTips, domainContent, Diagrams } from './data/index.js';
-import { allQuestions } from '../../questions.js';
+import { allQuestions } from './questions/index.js';
 
 const state = {
     view: 'home',
@@ -20,7 +20,11 @@ const logoBtn = document.getElementById('logo-btn');
 function init() {
     logoBtn.addEventListener('click', () => setView('home'));
     navButtons.forEach(btn => {
-        btn.addEventListener('click', () => setView(btn.dataset.view));
+        if (btn.dataset.view === 'quiz') {
+            btn.addEventListener('click', () => startQuiz('all', 10));
+        } else {
+            btn.addEventListener('click', () => setView(btn.dataset.view));
+        }
     });
     
     if (!document.getElementById('diagram-modal')) {
@@ -64,9 +68,10 @@ function setView(view, studyDomain = 1) {
     render();
 }
 
-function startQuiz(mode) {
+function startQuiz(mode, limit = null) {
     let pool = mode === 'all' ? allQuestions : allQuestions.filter(q => q.domain === parseInt(mode));
-    state.shuffledQuestions = [...pool].sort(() => Math.random() - 0.5);
+    let shuffled = [...pool].sort(() => Math.random() - 0.5);
+    state.shuffledQuestions = limit ? shuffled.slice(0, limit) : shuffled;
     state.quizMode = mode;
     state.view = 'quiz';
     state.currentQuestionIndex = 0;
@@ -108,10 +113,10 @@ function renderHome(container) {
         <div style="margin-bottom: 16px;">
             <span class="badge" style="color: var(--orange); border: 1px solid var(--orange)">CLF-C02</span>
             <span class="badge" style="color: var(--green); border: 1px solid var(--green)">${allQuestions.length} QUESTIONS</span>
-            <span class="badge" style="color: var(--blue); border: 1px solid var(--blue)">700 PASSING SCORE</span>
+            <span class="badge" style="color: var(--blue); border: 1px solid var(--blue)">70% PASSING</span>
         </div>
         <h1 style="font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 12px; line-height: 1.1">AWS Certified<br><span style="color: var(--orange)">Cloud Practitioner</span></h1>
-        <p style="color: var(--muted); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">Master the essentials with our professional study guide and practice questions.</p>
+        <p style="color: var(--muted); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">Master the essentials with our professional study guide and comprehensive practice exams.</p>
         <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap">
             <button class="btn btn-primary" id="start-full-quiz">Full Practice Exam</button>
         </div>
@@ -238,6 +243,12 @@ function renderStudy(container) {
                 </div>
                 <button class="btn btn-outline" id="practice-this-domain">Practice Quiz</button>
             </div>
+
+            ${d.detailedNotes ? `
+            <div style="background: rgba(0,0,0,0.1); border-left: 4px solid ${d.color}; padding: 24px; border-radius: 8px; margin-bottom: 30px; font-size: 14px; line-height: 1.6; color: var(--text);">
+                ${d.detailedNotes}
+            </div>
+            ` : ''}
 
             <div class="study-visuals" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px">
                 ${d.diagram ? `

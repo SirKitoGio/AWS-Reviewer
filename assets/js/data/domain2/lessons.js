@@ -10,6 +10,26 @@ export const domain2 = {
   diagram: SharedResponsibilityDiagram,
   diagram2Title: "IAM Entity Relationships",
   diagram2: IAMDiagram,
+  detailedNotes: `
+    <div class="detailed-notes-content">
+      <p>This domain dictates how organizations protect their data, manage user access, and meet regulatory requirements.</p>
+      <br>
+      <h4 style="color: #58A6FF; margin-bottom: 8px;">The Shared Responsibility Model</h4>
+      <p>AWS takes responsibility for the "Security OF the Cloud" (e.g., physical data centers, global network, hypervisors), while the customer is responsible for "Security IN the Cloud" (e.g., configuring firewalls, managing IAM policies, and encrypting data).</p>
+      <br>
+      <h4 style="color: #58A6FF; margin-bottom: 8px;">Identity & Access Management (IAM)</h4>
+      <p>Administrators use IAM to securely control who can access specific AWS resources by creating users, groups, and roles, and applying the principle of least privilege to minimize security risks.</p>
+      <br>
+      <h4 style="color: #58A6FF; margin-bottom: 8px;">Compliance Validation</h4>
+      <p>Auditors and compliance officers use AWS Artifact as a self-service portal to download AWS security certifications and compliance reports (like SOC, PCI, or ISO) to prove that the underlying infrastructure meets regulatory standards.</p>
+      <br>
+      <h4 style="color: #58A6FF; margin-bottom: 8px;">Security & Identity Services</h4>
+      <ul style="padding-left: 20px;">
+        <li style="margin-bottom: 6px;"><b>AWS WAF (Web Application Firewall):</b> Helps protect your web applications against common web exploits and bots that may affect availability or compromise security.</li>
+        <li style="margin-bottom: 6px;"><b>AWS Shield:</b> A managed Distributed Denial of Service (DDoS) protection service that safeguards applications running on AWS.</li>
+      </ul>
+    </div>
+  `,
   sections: [
     {
       title: "Shared Responsibility Model",

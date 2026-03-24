@@ -10,6 +10,26 @@ export const domain3 = {
   diagram: GlobalInfrastructureDiagram,
   diagram2Title: "S3 Storage Classes Comparison",
   diagram2: S3StorageClassesDiagram,
+  detailedNotes: `
+    <div class="detailed-notes-content">
+      <p>This domain is all about choosing the right tool for the job to optimize performance, scalability, and cost.</p>
+      <br>
+      <h4 style="color: #3FB950; margin-bottom: 8px;">Compute Services</h4>
+      <p>Developers decide between provisioning traditional virtual machines with Amazon EC2 for full OS control, or using AWS Lambda for a serverless architecture where code runs in response to events without needing to manage the underlying servers.</p>
+      <br>
+      <h4 style="color: #3FB950; margin-bottom: 8px;">Storage & Databases</h4>
+      <p>Architects select Amazon S3 for scalable object storage and static websites, Amazon EBS for persistent block storage attached to EC2 instances, or Amazon Redshift specifically when a scalable data warehouse is needed for complex analytics.</p>
+      <br>
+      <h4 style="color: #3FB950; margin-bottom: 8px;">Global Infrastructure</h4>
+      <p>Network engineers use Edge Locations and Amazon CloudFront (a Content Delivery Network) to cache content close to end-users worldwide, dramatically reducing latency for global applications.</p>
+      <br>
+      <h4 style="color: #3FB950; margin-bottom: 8px;">Networking & Content Delivery</h4>
+      <ul style="padding-left: 20px;">
+        <li style="margin-bottom: 6px;"><b>Amazon VPC (Virtual Private Cloud):</b> A logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define.</li>
+        <li style="margin-bottom: 6px;"><b>Amazon Route 53:</b> A highly available and scalable cloud Domain Name System (DNS) web service that routes users to internet applications.</li>
+      </ul>
+    </div>
+  `,
   sections: [
     {
       title: "Global Infrastructure",

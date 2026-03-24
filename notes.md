@@ -260,3 +260,283 @@ Support Source	Associates	Engineers	Engineers	Engineers
 * SDK (Software Development Kit): Language-specific tools for developers.
 * SI (System Integrator): Partners who help build and migrate AWS environments.
 * TAM (Technical Account Manager): Your primary point of architectural contact in Enterprise Support.
+
+
+
+Domain 1: Cloud Concepts
+
+This domain is used for strategic planning, architectural design, and business justification when moving to the cloud.
+
+
+
+The AWS Cloud Adoption Framework (CAF): Businesses use the CAF to align their cloud investments with their overarching business strategies. It helps organizations identify capability gaps, manage interdependencies, and plan successful migrations across six perspectives: Business, People, Governance, Platform, Security, and Operations.
+
+The AWS Well-Architected Framework: Cloud architects use this framework's six pillars (Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability) as a blueprint to evaluate existing architectures, identify high-risk issues, and build secure, resilient, and efficient infrastructure.
+
+Cloud Economics: Financial teams use these concepts to shift from large, fixed upfront capital expenditures (CapEx) associated with on-premises data centers to a variable, pay-as-you-go operational expense (OpEx) model.
+
+Domain 2: Security & Compliance
+
+This domain dictates how organizations protect their data, manage user access, and meet regulatory requirements.
+
+
+
+The Shared Responsibility Model: This model is used to define exactly who is responsible for what. AWS takes responsibility for the "Security OF the Cloud" (e.g., physical data centers, global network, hypervisors), while the customer is responsible for "Security IN the Cloud" (e.g., configuring firewalls, managing IAM policies, and encrypting data).
+
+Identity & Access Management (IAM): Administrators use IAM to securely control who can access specific AWS resources by creating users, groups, and roles, and applying the principle of least privilege to minimize security risks.
+
+Compliance Validation: Auditors and compliance officers use AWS Artifact as a self-service portal to download AWS security certifications and compliance reports (like SOC, PCI, or ISO) to prove that the underlying infrastructure meets regulatory standards.
+
+Domain 3: Cloud Technology & Services
+
+This domain is all about choosing the right tool for the job to optimize performance, scalability, and cost.
+
+
+
+Compute Services: Developers decide between provisioning traditional virtual machines with Amazon EC2 for full OS control, or using AWS Lambda for a serverless architecture where code runs in response to events without needing to manage the underlying servers.
+
+Storage & Databases: Architects select Amazon S3 for scalable object storage and static websites, Amazon EBS for persistent block storage attached to EC2 instances, or Amazon Redshift specifically when a scalable data warehouse is needed for complex SQL analytics.
+
+Global Infrastructure: Network engineers use Edge Locations and Amazon CloudFront (a Content Delivery Network) to cache content close to end-users worldwide, dramatically reducing latency for global applications.
+
+Domain 4: Billing, Pricing, & Support
+
+This domain is used to forecast costs, track spending, and ensure the right level of technical assistance is available.
+
+
+
+Cost Estimation & Tracking: Before deploying resources, teams use the AWS Pricing Calculator to model expected monthly bills. Once running, they use AWS Cost Explorer and Cost Allocation Tags to visually track spending by specific departments or projects.
+
+Pricing Models: To reduce costs, organizations utilize different purchasing models. For example, they might use Reserved Instances (committing to 1-3 years of usage) to save up to 72% on steady, non-interruptible workloads, compared to flexible but more expensive On-Demand pricing.
+
+Support Plans: Companies choose their AWS Support plan based on their required Service Level Agreements (SLAs). For instance, an enterprise running business-critical applications might upgrade to the Business plan to get a <1-hour response time for production-down cases, or the Enterprise plan to get a <15-minute response time and a designated Technical Account Manager (TAM).
+
+
+
+Section 2: The Six Advantages of Cloud Computing
+
+Overview: AWS explicitly tests your understanding of why companies move to the cloud. You need to know these six specific advantages by name and definition.
+
+
+
+Trade capital expense (CapEx) for variable expense (OpEx): Instead of paying heavily upfront for data centers and servers (CapEx), you pay only when you consume computing resources, and pay only for how much you consume (OpEx).
+
+Benefit from massive economies of scale: By using cloud computing, you achieve a lower variable cost than you can get on your own. Because usage from hundreds of thousands of customers is aggregated in the cloud, AWS achieves massive economies of scale, which translates into lower pay-as-you-go prices.
+
+Stop guessing capacity: Eliminate guessing on your infrastructure capacity needs. When you make a capacity decision prior to deploying an application, you often either sit on expensive idle resources or deal with limited capacity. Cloud allows you to scale up or down automatically.
+
+
+
+Increase speed and agility: In a cloud computing environment, new IT resources are only a click away. This reduces the time to make those resources available to your developers from weeks to just minutes.
+
+
+
+Stop spending money running and maintaining data centers: Focus on projects that differentiate your business, not the heavy lifting of racking, stacking, and powering servers.
+
+Go global in minutes: Easily deploy your application in multiple regions around the world with just a few clicks. This means you can provide lower latency and a better experience for your customers at a minimal cost.
+
+Section 3: Cloud Deployment Models
+
+Overview: When a company decides to use cloud resources, they have to choose a deployment strategy. The exam will give you scenario questions and ask you to identify which model is being used.
+
+
+
+Public Cloud (Cloud-Based / Cloud-Native): * All parts of the application run in the cloud.
+
+Applications have either been created in the cloud or migrated from an existing infrastructure.
+
+Example: A startup building their entire new mobile app backend directly on AWS.
+
+On-Premises (Private Cloud):
+
+Deploying resources on-premises, using virtualization and resource management tools.
+
+This is essentially traditional IT, but using cloud-like tools to manage it. It doesn't provide many of the benefits of cloud computing.
+
+Example: A hospital keeping all data on their own servers in their basement due to strict, localized compliance rules.
+
+Hybrid Cloud:
+
+A way to connect infrastructure and applications between cloud-based resources and existing resources that are not located in the cloud.
+
+Example: A bank keeping sensitive customer data on their legacy on-premises mainframes, but using AWS for their public-facing web servers.
+
+Section 4: The Shared Responsibility Model
+
+Overview: This is one of the most heavily tested concepts on the CCP exam. You must know exactly where AWS's responsibility ends and where the customer's begins.
+
+
+
+Security OF the Cloud (AWS Responsibility): AWS is responsible for protecting the infrastructure that runs all of the services offered in the AWS Cloud. This infrastructure is composed of the hardware, software, networking, and facilities that run AWS Cloud services.
+
+Think: Physical security of data centers, hardware patching, network infrastructure.
+
+Security IN the Cloud (Customer Responsibility): The customer's responsibility is determined by the AWS Cloud services they select. For things like Amazon EC2 (virtual servers), the customer is responsible for guest operating systems (including updates and security patches), any application software, and the configuration of the AWS-provided security group firewall.
+
+
+
+Think: Passwords, encrypting your data, setting up firewall rules, updating Linux/Windows on your virtual machines.
+
+
+
+Section 5: AWS Global Infrastructure
+
+Overview: You must understand how AWS physically structures its data centers to ensure high availability and low latency.
+
+
+
+Regions: A physical geographical location in the world where AWS has multiple Availability Zones (e.g., London, Tokyo, N. Virginia). You choose a Region based on compliance, latency, and pricing.
+
+Availability Zones (AZs): One or more discrete data centers within a Region, housed in separate facilities with redundant power, networking, and connectivity.
+
+Exam Tip: To achieve high availability, you should deploy your applications across multiple AZs. If one data center goes down, your app stays up.
+
+Edge Locations: Endpoints for AWS used for caching content closer to your users to reduce latency. This is primarily used by Amazon CloudFront (AWS's Content Delivery Network).
+
+Section 6: Core Compute Services
+
+Overview: Compute is the brain of your operations. The exam tests your ability to choose the right compute service for the right job.
+
+
+
+Amazon EC2 (Elastic Compute Cloud): Virtual servers in the cloud. You have full control over the operating system. It is Infrastructure as a Service (IaaS). You pay for the time the instance is running.
+
+AWS Lambda: A serverless compute service. You just upload your code, and Lambda takes care of everything required to run and scale it. You pay only for the exact compute time you consume (down to the millisecond).
+
+Exam Tip: If you see "run code without provisioning or managing servers," the answer is Lambda.
+
+Amazon EC2 Auto Scaling: A service that automatically adds or removes EC2 instances based on conditions you specify (like sudden spikes in web traffic).
+
+Section 7: Core Storage Services
+
+Overview: AWS has different storage types depending on how you need to access your data.
+
+
+
+Amazon S3 (Simple Storage Service): Object storage. Think of it as a massive, flat repository for files (images, videos, backups, static website files). It is incredibly durable and scalable.
+
+Amazon EBS (Elastic Block Store): Block storage designed to be attached to a single Amazon EC2 instance.
+
+Think: It's the virtual hard drive for your virtual computer. If the EC2 instance shuts down, the EBS volume can persist.
+
+Amazon EFS (Elastic File System): A scalable file system that can be mounted to multiple EC2 instances at the exact same time.
+
+Section 8: Core Databases
+
+Overview: The exam will test your ability to differentiate between SQL and NoSQL database offerings.
+
+
+
+Amazon RDS (Relational Database Service): A managed service that makes it easy to set up, operate, and scale a relational database (SQL) in the cloud. Supports engines like MySQL, PostgreSQL, and Oracle.
+
+Amazon DynamoDB: A fast, flexible NoSQL database service for all applications that need consistent, single-digit millisecond latency at any scale. It is fully managed and serverless.
+
+Section 9: Networking & Content Delivery
+
+Overview: How do things connect securely in the cloud, and how do they reach the internet?
+
+
+
+Amazon VPC (Virtual Private Cloud): A logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define. It's your private, secure slice of AWS.
+
+Amazon Route 53: A highly available and scalable cloud Domain Name System (DNS) web service. It routes users to internet applications by translating names like www.example.com into numeric IP addresses.
+
+Amazon CloudFront: A fast Content Delivery Network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency, using Edge Locations.
+
+Section 10: Security & Identity
+
+Overview: Security is "Job Zero" at AWS. Aside from the Shared Responsibility Model, you need to know how to control access.
+
+
+
+AWS IAM (Identity and Access Management): Enables you to manage access to AWS services and resources securely.
+
+Key Concept: The Principle of Least Privilege. You should only grant users the exact permissions they need to do their job, and nothing more.
+
+AWS WAF (Web Application Firewall): Helps protect your web applications or APIs against common web exploits and bots that may affect availability or compromise security (e.g., SQL injection, cross-site scripting).
+
+AWS Shield: A managed Distributed Denial of Service (DDoS) protection service that safeguards applications running on AWS.
+
+Section 11: Billing and Pricing
+
+Overview: You need to understand how to optimize costs and manage accounts.
+
+
+
+Pricing Fundamentals: Pay-as-you-go, save when you commit (e.g., buying Savings Plans or Reserved Instances for a 1 or 3-year term), and pay less by using more (volume discounts).
+
+AWS Organizations: An account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage. It allows for Consolidated Billing, combining usage across all accounts to reach volume discount tiers faster.
+
+AWS Pricing Calculator: A free web-based planning tool that allows you to create cost estimates before you build your environment.
+
+Section 12: The Well-Architected Framework
+
+Overview: AWS provides a set of best practices for designing and operating reliable, secure, efficient, and cost-effective systems in the cloud. You need to know the names of the six pillars:
+
+
+
+Operational Excellence
+
+Security
+
+Reliability
+
+Performance Efficiency
+
+Cost Optimization
+
+Sustainability
+
+
+
+Understanding how the four domains of the AWS Certified Cloud Practitioner exam are applied in real-world scenarios is crucial, as the exam relies heavily on scenario-based questions to test your practical knowledge.
+
+Here is a breakdown of how the concepts in each domain are used in practice:
+
+Domain 1: Cloud Concepts
+
+This domain is used for strategic planning, architectural design, and business justification when moving to the cloud.
+
+
+
+The AWS Cloud Adoption Framework (CAF): Businesses use the CAF to align their cloud investments with their overarching business strategies. It helps organizations identify capability gaps, manage interdependencies, and plan successful migrations across six perspectives: Business, People, Governance, Platform, Security, and Operations.
+
+The AWS Well-Architected Framework: Cloud architects use this framework's six pillars (Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability) as a blueprint to evaluate existing architectures, identify high-risk issues, and build secure, resilient, and efficient infrastructure.
+
+Cloud Economics: Financial teams use these concepts to shift from large, fixed upfront capital expenditures (CapEx) associated with on-premises data centers to a variable, pay-as-you-go operational expense (OpEx) model.
+
+Domain 2: Security & Compliance
+
+This domain dictates how organizations protect their data, manage user access, and meet regulatory requirements.
+
+
+
+The Shared Responsibility Model: This model is used to define exactly who is responsible for what. AWS takes responsibility for the "Security OF the Cloud" (e.g., physical data centers, global network, hypervisors), while the customer is responsible for "Security IN the Cloud" (e.g., configuring firewalls, managing IAM policies, and encrypting data).
+
+Identity & Access Management (IAM): Administrators use IAM to securely control who can access specific AWS resources by creating users, groups, and roles, and applying the principle of least privilege to minimize security risks.
+
+Compliance Validation: Auditors and compliance officers use AWS Artifact as a self-service portal to download AWS security certifications and compliance reports (like SOC, PCI, or ISO) to prove that the underlying infrastructure meets regulatory standards.
+
+Domain 3: Cloud Technology & Services
+
+This domain is all about choosing the right tool for the job to optimize performance, scalability, and cost.
+
+
+
+Compute Services: Developers decide between provisioning traditional virtual machines with Amazon EC2 for full OS control, or using AWS Lambda for a serverless architecture where code runs in response to events without needing to manage the underlying servers.
+
+Storage & Databases: Architects select Amazon S3 for scalable object storage and static websites, Amazon EBS for persistent block storage attached to EC2 instances, or Amazon Redshift specifically when a scalable data warehouse is needed for complex SQL analytics.
+
+Global Infrastructure: Network engineers use Edge Locations and Amazon CloudFront (a Content Delivery Network) to cache content close to end-users worldwide, dramatically reducing latency for global applications.
+
+Domain 4: Billing, Pricing, & Support
+
+This domain is used to forecast costs, track spending, and ensure the right level of technical assistance is available.
+
+
+
+Cost Estimation & Tracking: Before deploying resources, teams use the AWS Pricing Calculator to model expected monthly bills. Once running, they use AWS Cost Explorer and Cost Allocation Tags to visually track spending by specific departments or projects.
+
+Pricing Models: To reduce costs, organizations utilize different purchasing models. For example, they might use Reserved Instances (committing to 1-3 years of usage) to save up to 72% on steady, non-interruptible workloads, compared to flexible but more expensive On-Demand pricing.
+
+Support Plans: Companies choose their AWS Support plan based on their required Service Level Agreements (SLAs). For instance, an enterprise running business-critical applications might upgrade to the Business plan to get a <1-hour response time for production-down cases, or the Enterprise plan to get a <15-minute response time and a designated Technical Account Manager (TAM).

@@ -10,6 +10,30 @@ export const domain1 = {
   diagram: CAFDiagram,
   diagram2Title: "Well-Architected Framework Pillars",
   diagram2: WellArchitecturedDiagram,
+  detailedNotes: `
+    <div class="detailed-notes-content">
+      <p>This domain is used for strategic planning, architectural design, and business justification when moving to the cloud.</p>
+      <br>
+      <h4 style="color: var(--orange); margin-bottom: 8px;">The AWS Cloud Adoption Framework (CAF)</h4>
+      <p>Businesses use the CAF to align their cloud investments with their overarching business strategies. It helps organizations identify capability gaps, manage interdependencies, and plan successful migrations across six perspectives: Business, People, Governance, Platform, Security, and Operations.</p>
+      <br>
+      <h4 style="color: var(--orange); margin-bottom: 8px;">The AWS Well-Architected Framework</h4>
+      <p>Cloud architects use this framework's six pillars (Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability) as a blueprint to evaluate existing architectures, identify high-risk issues, and build secure, resilient, and efficient infrastructure.</p>
+      <br>
+      <h4 style="color: var(--orange); margin-bottom: 8px;">Cloud Economics</h4>
+      <p>Financial teams use these concepts to shift from large, fixed upfront capital expenditures (CapEx) associated with on-premises data centers to a variable, pay-as-you-go operational expense (OpEx) model.</p>
+      <br>
+      <h4 style="color: var(--orange); margin-bottom: 8px;">The Six Advantages of Cloud Computing</h4>
+      <ul style="padding-left: 20px;">
+        <li style="margin-bottom: 6px;"><b>Trade CapEx for OpEx:</b> Pay only when you consume computing resources, rather than paying heavily upfront for servers.</li>
+        <li style="margin-bottom: 6px;"><b>Benefit from massive economies of scale:</b> AWS aggregates usage from thousands of customers to achieve economies of scale and lower prices.</li>
+        <li style="margin-bottom: 6px;"><b>Stop guessing capacity:</b> Eliminate guessing on infrastructure capacity needs by scaling up or down automatically.</li>
+        <li style="margin-bottom: 6px;"><b>Increase speed and agility:</b> New IT resources are a click away, available in minutes instead of weeks.</li>
+        <li style="margin-bottom: 6px;"><b>Stop spending money maintaining data centers:</b> Focus on projects that differentiate your business.</li>
+        <li style="margin-bottom: 6px;"><b>Go global in minutes:</b> Easily deploy applications across multiple regions around the world to reduce latency.</li>
+      </ul>
+    </div>
+  `,
   sections: [
     {
       title: "Benefits of AWS Cloud",

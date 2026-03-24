@@ -10,6 +10,23 @@ export const domain4 = {
   diagram: PricingModelsDiagram,
   diagram2Title: "AWS Support Plans Table",
   diagram2: SupportPlansDiagram,
+  detailedNotes: `
+    <div class="detailed-notes-content">
+      <p>This domain is used to forecast costs, track spending, and ensure the right level of technical assistance is available.</p>
+      <br>
+      <h4 style="color: #BC8CFF; margin-bottom: 8px;">Cost Estimation & Tracking</h4>
+      <p>Before deploying resources, teams use the AWS Pricing Calculator to model expected monthly bills. Once running, they use AWS Cost Explorer and Cost Allocation Tags to visually track spending by specific departments or projects.</p>
+      <br>
+      <h4 style="color: #BC8CFF; margin-bottom: 8px;">Pricing Models</h4>
+      <p>To reduce costs, organizations utilize different purchasing models. For example, they might use Reserved Instances (committing to 1-3 years of usage) to save up to 72% on steady workloads, compared to flexible but more expensive On-Demand pricing.</p>
+      <br>
+      <h4 style="color: #BC8CFF; margin-bottom: 8px;">Support Plans</h4>
+      <p>Companies choose their AWS Support plan based on their required SLAs. For instance, an enterprise might upgrade to the Business plan to get a &lt;1-hour response time for production issues, or the Enterprise plan to get a &lt;15-minute response time and a Technical Account Manager (TAM).</p>
+      <br>
+      <h4 style="color: #BC8CFF; margin-bottom: 8px;">AWS Organizations</h4>
+      <p>An account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage. It allows for Consolidated Billing, combining usage across all accounts to reach volume discount tiers faster.</p>
+    </div>
+  `,
   sections: [
     {
       title: "Pricing Models",
