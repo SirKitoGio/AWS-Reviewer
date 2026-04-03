@@ -317,12 +317,12 @@ function renderStudy(container) {
                     ${d.concepts.map(c => `
                         <div class="card" style="padding: 20px; border-top: 4px solid var(--primary)">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
-                                <div style="font-weight: 700; color: var(--primary); font-size: 15px">	extdollar{c.company}</div>
-                                <div style="font-size: 10px; color: var(--muted); font-weight: 700">	extdollar{c.industry.toUpperCase()}</div>
+                                <div style="font-weight: 700; color: var(--primary); font-size: 15px">${c.company}</div>
+                                <div style="font-size: 10px; color: var(--muted); font-weight: 700">${c.industry.toUpperCase()}</div>
                             </div>
                             <div style="font-size: 13px; line-height: 1.6; color: var(--text)">
-                                <div style="margin-bottom: 8px"><span style="color: var(--muted); font-weight: 700">CHALLENGE:</span> 	extdollar{c.challenge}</div>
-                                <div><span style="color: var(--muted); font-weight: 700">AWS SOLUTION:</span> 	extdollar{c.solution}</div>
+                                <div style="margin-bottom: 8px"><span style="color: var(--muted); font-weight: 700">CHALLENGE:</span> ${c.challenge}</div>
+                                <div><span style="color: var(--muted); font-weight: 700">AWS SOLUTION:</span> ${c.solution}</div>
                             </div>
                         </div>
                     `).join('')}
@@ -349,11 +349,13 @@ function renderStudy(container) {
     if (isFirstModule) {
         const d1 = container.querySelector('#diag-1');
         if (d1) d1.onclick = () => enlargeDiagram(d.diagram);
-        
+
         const d2 = container.querySelector('#diag-2');
         if (d2) d2.onclick = () => enlargeDiagram(d.diagram2);
     }
 
+    const cmd = container.querySelector('#compute-models-diagram');
+    if (cmd) cmd.onclick = () => enlargeDiagram(Diagrams.ComputeModelsDiagram);
     const prevModBtn = container.querySelector('#prev-module-btn');
     if (prevModBtn) prevModBtn.onclick = () => {
         state.activeModuleIndex--;

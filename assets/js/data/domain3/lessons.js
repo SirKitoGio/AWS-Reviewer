@@ -1,4 +1,4 @@
-import { GlobalInfrastructureDiagram, S3StorageClassesDiagram } from '../diagrams.js';
+import { GlobalInfrastructureDiagram, S3StorageClassesDiagram, ComputeModelsDiagram } from '../diagrams.js';
 
 export const domain3 = {
   id: 3,
@@ -21,12 +21,12 @@ export const domain3 = {
       title: "Module 2 & 3: Compute in the Cloud",
       description: "AWS compute models vary by the level of abstraction provided.",
       customHtml: `
-        <div class="card diagram-card" style="padding: 16px; background: var(--bg-card); cursor: zoom-in; margin-bottom: 30px;" onclick="enlargeDiagram(Diagrams.ComputeModelsDiagram)">
+        <div class="card diagram-card" style="padding: 16px; background: var(--bg-card); cursor: zoom-in; margin-bottom: 30px;" id="compute-models-diagram">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
                 <div style="font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 1px">COMPUTE MODELS</div>
                 <div style="font-size: 10px; color: var(--primary)">[CLICK TO ENLARGE]</div>
             </div>
-            \${Diagrams.ComputeModelsDiagram}
+            ${ComputeModelsDiagram}
         </div>
       `,
       sections: [
