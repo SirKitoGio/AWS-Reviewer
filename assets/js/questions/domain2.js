@@ -1,5 +1,62 @@
 export const domain2Questions = [
   {
+    "id": "new2-1",
+    "domain": 2,
+    "question": "Under the shared responsibility model, which of the following is the customer responsible for?",
+    "options": [
+      "Updating Amazon EC2 host firmware.",
+      "Ensuring that data is encrypted at rest.",
+      "Securing the underlying infrastructure of RDS.",
+      "Managing physical security of data centers."
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "AWS provides the tools (like KMS), but configuring and enforcing encryption of customer data is strictly the customer's responsibility."
+  },
+  {
+    "id": "new2-2",
+    "domain": 2,
+    "question": "Which task is AWS solely responsible for under the shared responsibility model?",
+    "options": [
+      "Updating Amazon EC2 host firmware.",
+      "Managing IAM user permissions.",
+      "Patching the guest operating system on EC2.",
+      "Configuring security groups in a VPC."
+    ],
+    "correct": 0,
+    "multi": false,
+    "explanation": "Firmware lives on the physical hardware beneath the virtualization layer. Customers have no access to this layer."
+  },
+  {
+    "id": "new2-3",
+    "domain": 2,
+    "question": "Where are AWS compliance documents such as SOC 1 reports located?",
+    "options": [
+      "AWS Trusted Advisor",
+      "AWS Config",
+      "AWS Artifact",
+      "Amazon CloudWatch"
+    ],
+    "correct": 2,
+    "multi": false,
+    "explanation": "Artifact is the central repository for downloading compliance agreements and audit documents."
+  },
+  {
+    "id": "new2-4",
+    "domain": 2,
+    "question": "Which of the following security measures protect access to an AWS account? (Choose two.)",
+    "options": [
+      "Grant least privilege access to IAM users",
+      "Sharing Root user credentials with IT staff",
+      "Activate MFA for privileged users",
+      "Enabling public access to all S3 buckets",
+      "Using the same password for all IAM users"
+    ],
+    "correct": [0, 2],
+    "multi": true,
+    "explanation": "Least privilege and MFA are core IAM best practices for account security."
+  },
+  {
     "id": 1,
     "domain": 2,
     "question": "Under the shared responsibility model, which of the following is the customer responsible for?",

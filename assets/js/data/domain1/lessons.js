@@ -4,7 +4,7 @@ export const domain1 = {
   id: 1,
   name: "Cloud Concepts",
   weight: "24%",
-  color: "#FF9900",
+  color: "var(--primary)",
   icon: "",
   diagramTitle: "Cloud Adoption Framework (CAF)",
   diagram: CAFDiagram,
@@ -12,71 +12,68 @@ export const domain1 = {
   diagram2: WellArchitecturedDiagram,
   detailedNotes: `
     <div class="detailed-notes-content">
-      <p>This domain is used for strategic planning, architectural design, and business justification when moving to the cloud.</p>
-      <br>
-      <h4 style="color: var(--orange); margin-bottom: 8px;">The AWS Cloud Adoption Framework (CAF)</h4>
-      <p>Businesses use the CAF to align their cloud investments with their overarching business strategies. It helps organizations identify capability gaps, manage interdependencies, and plan successful migrations across six perspectives: Business, People, Governance, Platform, Security, and Operations.</p>
-      <br>
-      <h4 style="color: var(--orange); margin-bottom: 8px;">The AWS Well-Architected Framework</h4>
-      <p>Cloud architects use this framework's six pillars (Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability) as a blueprint to evaluate existing architectures, identify high-risk issues, and build secure, resilient, and efficient infrastructure.</p>
-      <br>
-      <h4 style="color: var(--orange); margin-bottom: 8px;">Cloud Economics</h4>
-      <p>Financial teams use these concepts to shift from large, fixed upfront capital expenditures (CapEx) associated with on-premises data centers to a variable, pay-as-you-go operational expense (OpEx) model.</p>
-      <br>
-      <h4 style="color: var(--orange); margin-bottom: 8px;">The Six Advantages of Cloud Computing</h4>
-      <ul style="padding-left: 20px;">
-        <li style="margin-bottom: 6px;"><b>Trade CapEx for OpEx:</b> Pay only when you consume computing resources, rather than paying heavily upfront for servers.</li>
-        <li style="margin-bottom: 6px;"><b>Benefit from massive economies of scale:</b> AWS aggregates usage from thousands of customers to achieve economies of scale and lower prices.</li>
-        <li style="margin-bottom: 6px;"><b>Stop guessing capacity:</b> Eliminate guessing on infrastructure capacity needs by scaling up or down automatically.</li>
-        <li style="margin-bottom: 6px;"><b>Increase speed and agility:</b> New IT resources are a click away, available in minutes instead of weeks.</li>
-        <li style="margin-bottom: 6px;"><b>Stop spending money maintaining data centers:</b> Focus on projects that differentiate your business.</li>
-        <li style="margin-bottom: 6px;"><b>Go global in minutes:</b> Easily deploy applications across multiple regions around the world to reduce latency.</li>
-      </ul>
+      <p>This domain covers the foundational value proposition of the AWS Cloud, including its economic benefits and the core design principles of the Well-Architected Framework.</p>
     </div>
   `,
-  sections: [
+  modules: [
     {
-      title: "Benefits of AWS Cloud",
-      items: [
-        { term: "Economies of Scale", focus: "Lower pay-as-you-go prices due to AWS's massive scale.", example: "Small startups getting enterprise-grade infrastructure at cents per hour." },
-        { term: "High Availability", focus: "Systems stay up even if components fail.", example: "Hosting a website across multiple Availability Zones so it stays online if one DC fails." },
-        { term: "Elasticity", focus: "Scale resources up/down automatically based on demand.", example: "An e-commerce site adding servers during Black Friday and removing them after." },
-        { term: "Agility", focus: "Reduced time to provision resources (minutes vs weeks).", example: "A developer spinning up a test environment in us-east-1 in under 2 minutes." },
-        { term: "Variable vs Fixed Cost", focus: "Trade CapEx (hardware) for OpEx (usage-based).", example: "Paying monthly for what you use instead of buying $10k worth of servers upfront." },
-        { term: "Go Global in Minutes", focus: "Deploy to multiple Regions worldwide instantly.", example: "A UK-based company launching their app in Tokyo with a few clicks." },
+      id: 1,
+      title: "Module 1: Introduction to the Cloud",
+      description: "Understanding the core value proposition of AWS and basic cloud economics.",
+      sections: [
+        {
+          title: "Value Proposition",
+          items: [
+            { term: "High Availability", focus: "Systems remain operational with minimal downtime.", example: "Spreading an app across multiple data centers." },
+            { term: "Elasticity", focus: "Automatically scale resources out/in or up/down.", example: "Adding 5 servers on Black Friday and removing them Saturday." },
+            { term: "Agility", focus: "Speed of provisioning resources.", example: "Launching an EC2 instance in minutes instead of weeks for hardware." },
+            { term: "Global Reach", focus: "Deploy applications globally in minutes.", example: "Placing data close to end-users to reduce latency." }
+          ]
+        },
+        {
+          title: "Cloud Economics (CapEx vs OpEx)",
+          items: [
+            { term: "CapEx", focus: "Fixed, upfront investment in physical infrastructure.", example: "Buying server racks and signing a 5-year lease." },
+            { term: "OpEx", focus: "Variable, pay-as-you-go expense based on consumption.", example: "Paying $0.05/hour for an EC2 instance and turning it off when done." },
+            { term: "Economies of Scale", focus: "AWS lowers prices by aggregating usage from millions of customers.", example: "Frequent price reductions passed back to customers." }
+          ]
+        }
       ]
     },
     {
-      title: "Well-Architected Framework",
-      items: [
-        { term: "Operational Excellence", focus: "Run and monitor systems; continually improve processes.", example: "Using CloudFormation to automate infrastructure updates." },
-        { term: "Security", focus: "Protect data, systems, and assets.", example: "Implementing IAM roles with Least Privilege for all developers." },
-        { term: "Reliability", focus: "Workloads perform correctly and recover from failures.", example: "Setting up Multi-AZ deployments for critical databases." },
-        { term: "Performance Efficiency", focus: "Use resources efficiently as demand changes.", example: "Using Lambda to scale instantly without managing servers." },
-        { term: "Cost Optimization", focus: "Avoid unnecessary costs; pay only for what you need.", example: "Downsizing an underutilized EC2 instance from large to medium." },
-        { term: "Sustainability", focus: "Minimize environmental impact of cloud workloads.", example: "Choosing an AWS Region powered by 100% renewable energy." },
+      id: 12,
+      title: "Module 12: Migrating to the AWS Cloud",
+      description: "The 6 R's of Migration Strategies help organizations decide how to move applications to the cloud.",
+      sections: [
+        {
+          title: "The 6 R's",
+          items: [
+            { term: "Rehost", focus: "Lift and Shift - no changes to the app.", example: "Moving a legacy VM as-is to EC2." },
+            { term: "Replatform", focus: "Lift, Tinker, and Shift - minor optimizations.", example: "Moving a database to Amazon RDS." },
+            { term: "Refactor", focus: "Re-architect/Cloud Native - full redesign.", example: "Breaking a monolith into microservices with Lambda." },
+            { term: "Repurchase", focus: "Drop and Shop - switching to SaaS.", example: "Moving from an on-prem CRM to Salesforce." },
+            { term: "Retire", focus: "Decommissioning non-useful apps.", example: "Turning off an old legacy reporting tool." },
+            { term: "Retain", focus: "Do Nothing - keeping apps on-prem.", example: "Leaving sensitive data on-prem for compliance." }
+          ]
+        }
       ]
     },
     {
-      title: "Cloud Adoption Framework (CAF)",
-      items: [
-        { term: "Business Perspective", focus: "Align cloud with business goals and ROI.", example: "CFO evaluating how moving to AWS reduces TCO (Total Cost of Ownership)." },
-        { term: "People Perspective", focus: "Bridge the gap between technology and people.", example: "HR creating new training programs for cloud certifications." },
-        { term: "Governance Perspective", focus: "Manage and measure cloud value/risks.", example: "Using AWS Budgets to prevent departments from overspending." },
-        { term: "Platform Perspective", focus: "Design, build, and optimize cloud infrastructure.", example: "Architects choosing between Containers (ECS) and Serverless (Lambda)." },
-        { term: "Security Perspective", focus: "Ensure confidentiality, integrity, and availability.", example: "Security teams implementing guardrails with Service Control Policies." },
-        { term: "Operations Perspective", focus: "Health and monitoring of cloud services.", example: "DevOps teams using CloudWatch to monitor system uptime." },
-      ]
-    },
-    {
-      title: "Migration Strategies (6 Rs)",
-      items: [
-        { term: "Rehost", focus: "Lift-and-shift migration without changes.", example: "Moving an on-prem VM exactly as-is to an EC2 instance." },
-        { term: "Replatform", focus: "Minor optimizations during migration.", example: "Moving an on-prem database to Amazon RDS (managed)." },
-        { term: "Refactor", focus: "Redesigning the app to be cloud-native.", example: "Breaking a monolithic app into microservices using Lambda." },
-        { term: "Repurchase", focus: "Moving to a different product (usually SaaS).", example: "Moving from an on-prem CRM to Salesforce." },
-        { term: "Retire", focus: "Getting rid of non-useful applications.", example: "Turning off an old legacy reporting tool that nobody uses." },
-        { term: "Retain", focus: "Keeping some applications on-premises.", example: "Leaving a highly sensitive database on-prem for compliance." },
+      id: 13,
+      title: "Module 13: Well-Architected Solutions",
+      description: "The six pillars of the AWS Well-Architected Framework for building secure, high-performing, resilient, and efficient infrastructure.",
+      sections: [
+        {
+          title: "The Six Pillars",
+          items: [
+            { term: "Operational Excellence", focus: "Run and monitor systems to deliver business value.", example: "Automating deployments using CloudFormation." },
+            { term: "Security", focus: "Protecting information, systems, and assets.", example: "Encrypting EBS volumes and using IAM roles." },
+            { term: "Reliability", focus: "Consistency and quick recovery from failure.", example: "Deploying across multiple Availability Zones." },
+            { term: "Performance Efficiency", focus: "Using resources efficiently as demand changes.", example: "Adopting serverless (Lambda) to remove server management." },
+            { term: "Cost Optimization", focus: "Avoiding unnecessary costs.", example: "Using Cost Explorer to identify and rightsize idle instances." },
+            { term: "Sustainability", focus: "Minimizing environmental impacts.", example: "Choosing energy-efficient hardware and scaling in off-peak." }
+          ]
+        }
       ]
     }
   ],
@@ -92,12 +89,6 @@ export const domain1 = {
       industry: "Hospitality / Tech",
       challenge: "Handling unpredictable traffic spikes during holiday booking seasons.",
       solution: "Leveraged AWS Elasticity to automatically scale EC2 instances and databases, paying only for the extra capacity during peak demand."
-    },
-    {
-      company: "General Electric (GE)",
-      industry: "Industrial / Manufacturing",
-      challenge: "High cost and low agility of managing thousands of on-premises servers.",
-      solution: "Executed a massive Cloud Migration (Refactoring), moving 9,000+ workloads to AWS, reducing TCO by 52% and increasing speed-to-market."
     }
   ]
 };

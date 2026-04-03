@@ -1,64 +1,75 @@
-import { SharedResponsibilityDiagram, IAMDiagram } from '../diagrams.js';
+import { SharedResponsibilityDiagram } from '../diagrams.js';
 
 export const domain2 = {
   id: 2,
-  name: "Security & Compliance",
+  name: "Security and Compliance",
   weight: "30%",
-  color: "#58A6FF",
+  color: "var(--primary)",
   icon: "",
   diagramTitle: "Shared Responsibility Model",
   diagram: SharedResponsibilityDiagram,
-  diagram2Title: "IAM Entity Relationships",
-  diagram2: IAMDiagram,
   detailedNotes: `
     <div class="detailed-notes-content">
-      <p>This domain dictates how organizations protect their data, manage user access, and meet regulatory requirements.</p>
-      <br>
-      <h4 style="color: #58A6FF; margin-bottom: 8px;">The Shared Responsibility Model</h4>
-      <p>AWS takes responsibility for the "Security OF the Cloud" (e.g., physical data centers, global network, hypervisors), while the customer is responsible for "Security IN the Cloud" (e.g., configuring firewalls, managing IAM policies, and encrypting data).</p>
-      <br>
-      <h4 style="color: #58A6FF; margin-bottom: 8px;">Identity & Access Management (IAM)</h4>
-      <p>Administrators use IAM to securely control who can access specific AWS resources by creating users, groups, and roles, and applying the principle of least privilege to minimize security risks.</p>
-      <br>
-      <h4 style="color: #58A6FF; margin-bottom: 8px;">Compliance Validation</h4>
-      <p>Auditors and compliance officers use AWS Artifact as a self-service portal to download AWS security certifications and compliance reports (like SOC, PCI, or ISO) to prove that the underlying infrastructure meets regulatory standards.</p>
-      <br>
-      <h4 style="color: #58A6FF; margin-bottom: 8px;">Security & Identity Services</h4>
-      <ul style="padding-left: 20px;">
-        <li style="margin-bottom: 6px;"><b>AWS WAF (Web Application Firewall):</b> Helps protect your web applications against common web exploits and bots that may affect availability or compromise security.</li>
-        <li style="margin-bottom: 6px;"><b>AWS Shield:</b> A managed Distributed Denial of Service (DDoS) protection service that safeguards applications running on AWS.</li>
-      </ul>
+      <p>This domain focuses on the AWS Shared Responsibility Model, Identity and Access Management (IAM), and the various tools available for auditing and compliance.</p>
     </div>
   `,
-  sections: [
+  modules: [
     {
-      title: "Shared Responsibility Model",
-      items: [
-        { term: "AWS (OF the Cloud)", focus: "Physical security, global infrastructure, managed services patching.", example: "Protecting a data center in us-west-2 from unauthorized access." },
-        { term: "Customer (IN the Cloud)", focus: "Data encryption, IAM policies, OS patching for EC2, Firewall config.", example: "Installing security updates on a Windows EC2 instance." },
-        { term: "Shared (Configuration)", focus: "Network controls and IAM settings.", example: "Creating a security group that allows HTTP but blocks SSH." },
+      id: 9,
+      title: "Module 9: Security & The Shared Responsibility Model",
+      description: "Security and Compliance is a shared responsibility between AWS and the customer.",
+      customHtml: `
+        <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin-bottom: 30px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+            <h4 style="color: var(--primary); margin-bottom: 16px; font-size: 16px;">The Line of Demarcation</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="border: 1px solid var(--border); padding: 18px; border-radius: 10px; background: var(--accent-light);">
+                    <div style="font-weight: 700; color: var(--accent); margin-bottom: 12px; font-size: 13px;">Customer: Security IN the Cloud</div>
+                    <ul style="font-size: 12px; padding-left: 20px; color: var(--text); line-height: 1.6;">
+                        <li>Customer Data</li>
+                        <li>Identity & Access Management (IAM)</li>
+                        <li>OS, Applications & Patching</li>
+                        <li>Network & Firewall Configuration</li>
+                    </ul>
+                </div>
+                <div style="border: 1px solid var(--border); padding: 18px; border-radius: 10px; background: var(--primary-light);">
+                    <div style="font-weight: 700; color: var(--primary); margin-bottom: 12px; font-size: 13px;">AWS: Security OF the Cloud</div>
+                    <ul style="font-size: 12px; padding-left: 20px; color: var(--text); line-height: 1.6;">
+                        <li>Compute, Storage, DB Services</li>
+                        <li>Global Network Infrastructure</li>
+                        <li>Physical Hardware & Hypervisor</li>
+                        <li>Physical Data Centers & Regions</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 13px; font-style: italic; color: var(--muted); border-top: 1px solid var(--border); padding-top: 15px;">
+                <b>Scenario Example:</b> If a customer makes an S3 bucket public and data leaks, it is the <b style="color: var(--accent);">customer's</b> fault. If an AWS data center loses power, it is <b style="color: var(--primary);">AWS's</b> fault.
+            </p>
+        </div>
+      `,
+      sections: [
+        {
+          title: "Identity & Access Management (IAM)",
+          items: [
+            { term: "Least Privilege", focus: "Granting only the permissions required to perform a task.", example: "Allowing a developer to read from S3 but not delete buckets." },
+            { term: "MFA", focus: "Multi-Factor Authentication for extra security.", example: "Requiring a hardware token for Root user login." },
+            { term: "IAM Roles", focus: "Temporary permissions for services or users.", example: "Giving an EC2 instance permission to access an S3 bucket without using access keys." }
+          ]
+        }
       ]
     },
     {
-      title: "IAM (Identity & Access Management)",
-      items: [
-        { term: "IAM User", focus: "Unique identity for a single person or app.", example: "Developer 'Alice' needs an account to access S3." },
-        { term: "IAM Group", focus: "Collection of users sharing common permissions.", example: "Creating a 'Finance-Team' group with billing access only." },
-        { term: "IAM Role", focus: "Temporary identity with permissions assigned to services.", example: "An EC2 instance needs a Role to write logs to CloudWatch." },
-        { term: "IAM Policy", focus: "JSON document defining allowed or denied actions.", example: "A policy that allows 's3:ListBucket' but denies 's3:DeleteObject'." },
-        { term: "Root User", focus: "Full administrative access—never use for daily tasks!", example: "Use Root only to enable consolidated billing, then log out." },
-        { term: "Least Privilege", focus: "Granting ONLY the minimum permissions needed.", example: "Giving a backup script read-only access instead of FullAccess." },
-      ]
-    },
-    {
-      title: "Security & Compliance Services",
-      items: [
-        { term: "AWS Shield", focus: "Standard DDoS protection (free) vs Advanced (paid).", example: "Standard automatically protects S3 from common layer 3/4 attacks." },
-        { term: "AWS WAF", focus: "Filter web traffic and block common exploits.", example: "Blocking requests from a specific IP address attacking your web app." },
-        { term: "Amazon Inspector", focus: "Scans EC2 and containers for vulnerabilities.", example: "Running a scan to find unpatched software on your production servers." },
-        { term: "Amazon GuardDuty", focus: "Intelligent threat detection using ML.", example: "Getting an alert when an EC2 instance starts crypto-mining." },
-        { term: "AWS KMS", focus: "Managed service to create and control encryption keys.", example: "Using a KMS key to encrypt sensitive files in an S3 bucket." },
-        { term: "AWS Artifact", focus: "Self-service access to AWS compliance reports.", example: "Downloading a SOC2 or PCI-DSS report for an auditor." },
+      id: 10,
+      title: "Module 10 (Part A): Compliance & Auditing",
+      description: "AWS provides specialized services for governance, auditing, and compliance.",
+      sections: [
+        {
+          title: "Governance & Compliance Tools",
+          items: [
+            { term: "AWS Artifact", focus: "Self-service portal for compliance reports.", example: "Downloading a SOC 1 or ISO 27001 report for an auditor." },
+            { term: "AWS CloudTrail", focus: "API Auditing - Who did what, when, and from where?", example: "Investigating which user deleted an EC2 instance yesterday." },
+            { term: "AWS Config", focus: "Configuration Management and history.", example: "Checking if any S3 buckets were made public in the last 24 hours." }
+          ]
+        }
       ]
     }
   ],
@@ -66,20 +77,8 @@ export const domain2 = {
     {
       company: "Capital One",
       industry: "Financial Services",
-      challenge: "Securing highly sensitive banking data in a strictly regulated environment.",
-      solution: "Used AWS KMS for pervasive data encryption and IAM Service Control Policies (SCPs) to implement organization-wide security guardrails."
-    },
-    {
-      company: "Dow Jones",
-      industry: "Media / Finance",
-      challenge: "Detecting sophisticated cyber threats across a global digital footprint.",
-      solution: "Implemented Amazon GuardDuty for ML-powered threat detection and AWS CloudTrail to maintain an immutable log of every API call for auditing."
-    },
-    {
-      company: "Slack",
-      industry: "Technology / SaaS",
-      challenge: "Protecting their platform from large-scale DDoS attacks that could disrupt global communication.",
-      solution: "Deployed AWS Shield Advanced and AWS WAF to automatically detect and block malicious traffic at the application layer."
+      challenge: "Moving highly sensitive financial data to the cloud while meeting strict regulatory compliance.",
+      solution: "Utilized AWS Artifact for compliance reports and CloudTrail for rigorous API auditing of all administrative actions."
     }
   ]
 };

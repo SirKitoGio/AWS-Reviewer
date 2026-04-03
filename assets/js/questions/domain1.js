@@ -1,5 +1,62 @@
 export const domain1Questions = [
   {
+    "id": "new1-1",
+    "domain": 1,
+    "question": "Which of the following is a correct relationship between Regions, Availability Zones, and edge locations?",
+    "options": [
+      "Regions contain Availability Zones.",
+      "Availability Zones contain Regions.",
+      "Edge locations contain Availability Zones.",
+      "Regions contain edge locations."
+    ],
+    "correct": 0,
+    "multi": false,
+    "explanation": "Regions are large geographic areas containing 2 or more AZs. Edge locations are independent caching endpoints for CloudFront, not nested within AZs."
+  },
+  {
+    "id": "new1-2",
+    "domain": 1,
+    "question": "Which AWS characteristics make AWS cost-effective for a workload with dynamic user demand? (Choose two.)",
+    "options": [
+      "High Availability",
+      "Elasticity",
+      "Pay-as-you-go pricing",
+      "Global Reach",
+      "Shared Responsibility"
+    ],
+    "correct": [1, 2],
+    "multi": true,
+    "explanation": "Elasticity ensures you only provision what you need at the exact moment you need it. Pay-as-you-go ensures you only pay for that precise capacity."
+  },
+  {
+    "id": "new1-3",
+    "domain": 1,
+    "question": "Distributing workloads across multiple Availability Zones supports which cloud architecture design principle?",
+    "options": [
+      "Loose Coupling",
+      "Design for failure",
+      "Agility",
+      "Economies of scale"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Placing resources in multiple AZs assumes that hardware will eventually fail, and builds architecture that routes around that failure automatically."
+  },
+  {
+    "id": "new1-4",
+    "domain": 1,
+    "question": "What is an example of agility in the AWS Cloud?",
+    "options": [
+      "Access to the lowest possible pricing.",
+      "Using multiple Availability Zones for an application.",
+      "Decreased acquisition time for new compute resources.",
+      "Automated scaling of resources based on CPU."
+    ],
+    "correct": 2,
+    "multi": false,
+    "explanation": "Moving from a weeks-long hardware procurement process to launching a virtual server in two minutes highlights operational agility."
+  },
+  {
     "id": 2,
     "domain": 1,
     "question": "The use of what AWS feature or service allows companies to track and categorize spending on a detailed level?",

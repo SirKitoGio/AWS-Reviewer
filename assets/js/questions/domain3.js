@@ -1,5 +1,61 @@
 export const domain3Questions = [
   {
+    "id": "new3-1",
+    "domain": 3,
+    "question": "Which service stores objects, provides real-time access, and offers versioning and lifecycle capabilities?",
+    "options": [
+      "Amazon EBS",
+      "Amazon S3",
+      "Amazon EFS",
+      "Amazon Glacier"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "S3 is an object storage service supporting versioning and lifecycle rules (moving older data to cheaper storage classes)."
+  },
+  {
+    "id": "new3-2",
+    "domain": 3,
+    "question": "A company wants to reduce the physical compute footprint that developers use to run code. Which service enables serverless architectures?",
+    "options": [
+      "Amazon EC2",
+      "AWS Lambda",
+      "Amazon ECS",
+      "AWS OpsWorks"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Lambda requires zero server management or provisioning. You upload the code and AWS executes it."
+  },
+  {
+    "id": "new3-3",
+    "domain": 3,
+    "question": "A company needs a scalable data warehouse solution. Which AWS service meets this need?",
+    "options": [
+      "Amazon RDS",
+      "Amazon DynamoDB",
+      "Amazon Redshift",
+      "Amazon Aurora"
+    ],
+    "correct": 2,
+    "multi": false,
+    "explanation": "Redshift is AWS's petabyte-scale data warehouse service optimized for complex analytical queries (OLAP)."
+  },
+  {
+    "id": "new3-4",
+    "domain": 3,
+    "question": "Which service provides a hybrid storage service enabling on-premises apps to use cloud storage seamlessly?",
+    "options": [
+      "AWS Direct Connect",
+      "AWS Storage Gateway",
+      "Amazon Route 53",
+      "AWS Snowball"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Storage Gateway connects an on-premises software appliance with cloud-based storage to provide seamless integration."
+  },
+  {
     "id": 7,
     "domain": 3,
     "question": "Which AWS services can host a Microsoft SQL Server database? (Choose two.)",

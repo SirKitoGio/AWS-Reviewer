@@ -1,74 +1,59 @@
-# Project Requirement Document (PRD): AWS CLF-C02 Reviewer
+# Project Requirement Document (PRD): AWS CLF-C02 Reviewer v2.1
 
 ## 1. Project Overview
-The **AWS CCP Reviewer** is an interactive web-based study tool designed to help users pass the AWS Certified Cloud Practitioner (CLF-C02) exam. It focuses on four key domains through visual diagrams, structured study material, and a practice quiz engine.
+The **AWS CCP Reviewer** is an interactive, high-performance study platform designed to help users master the AWS Certified Cloud Practitioner (CLF-C02) exam. It provides a specialized environment where curriculum content (Notes, Diagrams, Questions) is modularized for targeted learning and rapid review.
 
-## 2. Current Status
-- **Technology:** Vanilla JavaScript (ES Modules), HTML5, and CSS3.
-- **Features:** 
-    - Home dashboard with domain progress.
-    - Study Mode with expandable sections and flashcards.
-    - Quiz Engine with shuffled questions and immediate feedback.
-    - Visual SVG Diagrams for complex concepts.
-- **Issue:** Content is currently "hard-coded" in large data files, making it difficult to scale or add deep-dive lesson plans for specific sub-topics.
+## 2. Core Architecture & Design
+- **Technology:** Vanilla JavaScript (ES Modules), HTML5 (Semantic), and Custom CSS.
+- **Data Structure:** Modular architecture with content separated into Modules within Domains. Each domain is isolated into its own package (`assets/js/questions/domainX.js` and `assets/js/data/domainX/lessons.js`).
+- **UI/UX Theme:** **Green and Soft Neutrals**. A restful, nature-inspired palette designed to reduce eye strain and promote focus.
+    - **Primary:** Muted Sage / Moss Green (`#768A76`).
+    - **Background:** Cream / Soft Neutral (`#F4F3EF`).
+    - **Accent:** Earthy Browns / Soft Yellows (`#B8905B`).
+- **Navigation:**
+    - **Global:** Quick access to Home, Study, Tips, and Quiz.
+    - **Study Sidebar:** A sticky sidebar listing all Domains and their underlying Modules for direct access.
+    - **Sequential Progression:** Bottom navigation ("Next Module" / "Previous Module") allowing users to flow through the entire curriculum across domain boundaries.
 
-## 3. File Structure: Current vs. Proposed
+## 3. Key Features
+- **Module-by-Module Study:** Content is delivered in granular modules to prevent information overload. Each module includes focused descriptions, structured tables, and custom conceptual HTML.
+- **Dual Quiz Engine:** Comprehensive 'Full Practice' quizzes vs. domain-specific sessions.
+- **Visual Learning:** SVG diagrams integrated directly into the study flow, only appearing on the first module of a domain to maintain clarity.
+- **Corporate Use Cases:** Real-world examples (e.g., Netflix, Airbnb) appearing at the conclusion of each domain.
+- **Exam Tips:** A dedicated view for quick patterns and "who did what" API auditing rules.
 
-### Current Structure (Monolithic)
+## 4. Current File Structure
 ```text
 /
-├── index.html          # Main Entry
-├── questions.js        # ~2500 lines of questions (One big file)
-├── reviewer.html       # Draft/React version (Currently unused)
-└── assets/
-    ├── css/
-    │   └── styles.css
-    └── js/
-        ├── app.js      # Main App Logic (Handles everything)
-        └── data.js     # Domain content & SVG diagrams (One big file)
-```
-
-### Proposed Structure (Modular & Scalable)
-To allow for "learning each domain" in depth, we should move toward a modular structure where each domain has its own folder for notes, specific diagrams, and lessons.
-
-```text
-/
-├── index.html
+├── index.html          # Entry point
+├── PRD.md              # Project Requirements Document
 ├── assets/
 │   ├── js/
-│   │   ├── core/
-│   │   │   ├── app.js      # App engine (Routing/State)
-│   │   │   └── quiz.js     # Isolated Quiz Logic
-│   │   ├── data/
-│   │   │   ├── index.js    # Aggregates all domains
-│   │   │   ├── domain1/    # Cloud Concepts
-│   │   │   │   ├── lessons.js
-│   │   │   │   ├── diagrams.js
-│   │   │   │   └── notes.md
-│   │   │   ├── domain2/    # Security
-│   │   │   └── ... (etc)
-│   │   └── questions/
-│   │       ├── domain1.js  # Segmented questions
-│   │       └── ...
-│   └── css/
+│   │   ├── app.js      # Main Engine (Routing, Sidebar Logic, Sequential Rendering)
+│   │   ├── questions/  # Question Modules (Domain-segmented)
+│   │   │   ├── index.js
+│   │   │   └── domain[1-4].js
+│   │   └── data/       # Study Content Modules
+│   │       ├── index.js
+│   │       ├── diagrams.js
+│   │       └── domain[1-4]/
+│   │           └── lessons.js
+│   └── css/            # "Green & Neutrals" Design System
 ```
 
-## 4. Learning & Presentation Strategy
-We want the app to transition from a "reviewer" to a "learning platform."
+## 5. Feature Roadmap
 
-### Phase 1: Modularization
-- Split `questions.js` by domain to reduce file size and improve loading.
-- Move SVG diagrams into separate modules so they can be reused in "Lesson" views.
+### Phase 2: Progress & Performance
+- **Local Persistence:** Implement `localStorage` to save quiz scores and history.
+- **Study Progress:** Track which modules have been completed in the sidebar.
 
-### Phase 2: Lesson Plan Integration
-- **Concept Deep-Dives:** Instead of just definitions, add "Deep Dive" buttons that show detailed notes (the notes you will provide).
-- **Presentation Mode:** A "Slide-style" view for studying where one concept is presented at a time with its corresponding diagram.
-- **Active Recall:** Integrate a Spaced Repetition System (SRS) for terms the user gets wrong in the quiz.
+### Phase 3: Advanced Learning Tools
+- **Spaced Repetition System (SRS):** Re-surface concepts/questions the user frequently gets wrong.
+- **Dynamic Content Injection:** Allow auto-generation of modules from external data files.
 
-### Phase 3: Content Expansion
-- **User Notes Input:** Create a dedicated `notes/` directory where you can drop `.txt` or `.md` files. We will build a parser to automatically turn these notes into "Study Cards" in the app.
+### Phase 4: Active Recall
+- **Interactive Flashcards:** A dedicated mode to flip through key terms from the modules for quick recall.
 
-## 5. Next Steps
-1. **Input Notes:** User will provide study notes.
-2. **Refactor Data:** I will help you move from the current `data.js` to the `domainX/` folder structure.
-3. **Enhance Study Mode:** Implement the "Lesson Plan" view to present your notes effectively.
+## 6. Maintenance Guidelines
+- **Color Consistency:** Always use `var(--primary)`, `var(--bg-main)`, and `var(--accent)` to maintain the restful theme. Avoid hardcoded hex colors in JS or CSS.
+- **Module Hygiene:** Keep modules focused. If a module becomes too long, split it into parts (e.g., Module 10 Part A & B).

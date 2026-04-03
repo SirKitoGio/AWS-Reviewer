@@ -1,88 +1,117 @@
-import { PricingModelsDiagram, SupportPlansDiagram } from '../diagrams.js';
+import { PricingModelsDiagram } from '../diagrams.js';
 
 export const domain4 = {
   id: 4,
-  name: "Billing, Pricing & Support",
+  name: "Billing, Pricing, and Support",
   weight: "12%",
-  color: "#BC8CFF",
+  color: "var(--primary)",
   icon: "",
-  diagramTitle: "EC2 Pricing Models Comparison",
+  diagramTitle: "EC2 Pricing Models",
   diagram: PricingModelsDiagram,
-  diagram2Title: "AWS Support Plans Table",
-  diagram2: SupportPlansDiagram,
   detailedNotes: `
     <div class="detailed-notes-content">
-      <p>This domain is used to forecast costs, track spending, and ensure the right level of technical assistance is available.</p>
-      <br>
-      <h4 style="color: #BC8CFF; margin-bottom: 8px;">Cost Estimation & Tracking</h4>
-      <p>Before deploying resources, teams use the AWS Pricing Calculator to model expected monthly bills. Once running, they use AWS Cost Explorer and Cost Allocation Tags to visually track spending by specific departments or projects.</p>
-      <br>
-      <h4 style="color: #BC8CFF; margin-bottom: 8px;">Pricing Models</h4>
-      <p>To reduce costs, organizations utilize different purchasing models. For example, they might use Reserved Instances (committing to 1-3 years of usage) to save up to 72% on steady workloads, compared to flexible but more expensive On-Demand pricing.</p>
-      <br>
-      <h4 style="color: #BC8CFF; margin-bottom: 8px;">Support Plans</h4>
-      <p>Companies choose their AWS Support plan based on their required SLAs. For instance, an enterprise might upgrade to the Business plan to get a &lt;1-hour response time for production issues, or the Enterprise plan to get a &lt;15-minute response time and a Technical Account Manager (TAM).</p>
-      <br>
-      <h4 style="color: #BC8CFF; margin-bottom: 8px;">AWS Organizations</h4>
-      <p>An account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage. It allows for Consolidated Billing, combining usage across all accounts to reach volume discount tiers faster.</p>
+      <p>This domain covers how AWS charges for its services, the various support plans available, and tools for cost management.</p>
     </div>
   `,
-  sections: [
+  modules: [
     {
-      title: "Pricing Models",
-      items: [
-        { term: "On-Demand", focus: "No upfront cost; pay by the second.", example: "Spinning up a server for a 2-hour software demo." },
-        { term: "Reserved (RI)", focus: "Commit to 1 or 3 years for big discount.", example: "Your main production database running 24/7." },
-        { term: "Savings Plan", focus: "Flexible hourly commit across Compute.", example: "Committing $10/hr across EC2, Lambda, and Fargate." },
-        { term: "Spot Instances", focus: "Bid for spare capacity (90% off).", example: "Big data batch jobs that can restart if interrupted." },
-        { term: "Dedicated Host", focus: "Physical server just for you (BYOL).", example: "Running Windows software with strict licensing." },
+      id: 11,
+      title: "Module 11: Pricing and Support",
+      description: "AWS offers multiple purchasing options and support tiers to match different business needs.",
+      customHtml: `
+        <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin-bottom: 30px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+            <h4 style="color: var(--primary); margin-bottom: 16px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                <span style="background: var(--primary); width: 4px; height: 16px; border-radius: 2px;"></span>
+                Support Plan Comparison
+            </h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                <!-- Basic -->
+                <div style="border: 1px solid var(--border); padding: 16px; border-radius: 8px; background: var(--bg-main);">
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--text);">Basic</div>
+                    <div style="font-size: 11px; color: var(--primary); font-weight: 700; margin-bottom: 8px; text-transform: uppercase;">Free (Included)</div>
+                    <ul style="font-size: 11px; color: var(--muted); padding-left: 16px; line-height: 1.5;">
+                        <li>7 core Trusted Advisor checks</li>
+                        <li>24/7 Customer Service (Billing/Account)</li>
+                        <li>Documentation & Whitepapers</li>
+                        <li>AWS Support Forums</li>
+                    </ul>
+                </div>
+                <!-- Developer -->
+                <div style="border: 1px solid var(--border); padding: 16px; border-radius: 8px; background: var(--bg-main);">
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--text);">Developer</div>
+                    <div style="font-size: 11px; color: var(--primary); font-weight: 700; margin-bottom: 8px; text-transform: uppercase;">Starts at $29/mo</div>
+                    <ul style="font-size: 11px; color: var(--muted); padding-left: 16px; line-height: 1.5;">
+                        <li><b>Testing/Early Dev:</b> Business hours email</li>
+                        <li>Cloud Support Associates access</li>
+                        <li>SLA: &lt; 24h general, &lt; 12h system</li>
+                    </ul>
+                </div>
+                <!-- Business -->
+                <div style="border: 1px solid var(--primary); padding: 16px; border-radius: 8px; background: var(--primary-light);">
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--text);">Business</div>
+                    <div style="font-size: 11px; color: var(--primary); font-weight: 700; margin-bottom: 8px; text-transform: uppercase;">Starts at $100/mo</div>
+                    <ul style="font-size: 11px; color: var(--text); padding-left: 16px; line-height: 1.5;">
+                        <li><b>Production:</b> 24/7 Phone, Email, Chat</li>
+                        <li>All Trusted Advisor checks</li>
+                        <li>Cloud Support Engineers access</li>
+                        <li><b>SLA: &lt; 1 hour</b> response</li>
+                    </ul>
+                </div>
+                <!-- Enterprise -->
+                <div style="border: 1px solid var(--accent); padding: 16px; border-radius: 8px; background: var(--accent-light);">
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--text);">Enterprise</div>
+                    <div style="font-size: 11px; color: var(--accent); font-weight: 700; margin-bottom: 8px; text-transform: uppercase;">Starts at $15k/mo</div>
+                    <ul style="font-size: 11px; color: var(--text); padding-left: 16px; line-height: 1.5;">
+                        <li><b>Business-Critical:</b> 24/7 Access</li>
+                        <li><b>Technical Account Manager (TAM)</b></li>
+                        <li>Concierge Support Team</li>
+                        <li><b>SLA: &lt; 15 minutes</b> critical</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      `,
+      sections: [
+        {
+          title: "Compute Purchasing Options",
+          items: [
+            { term: "On-Demand", focus: "No commitment. Pay by the second.", example: "Short-term, unpredictable workloads." },
+            { term: "Reserved Instances", focus: "1 or 3 year commitment. Up to 72% discount.", example: "Steady-state, predictable usage." },
+            { term: "Savings Plans", focus: "Commit to a consistent amount of usage ($/hr).", example: "Flexible compute usage across EC2, Lambda, Fargate." },
+            { term: "Spot Instances", focus: "Use spare AWS capacity. Up to 90% discount.", example: "Fault-tolerant, flexible background tasks." }
+          ]
+        },
+        {
+          title: "Cost Management Tools",
+          items: [
+            { term: "Pricing Calculator", focus: "Estimate costs BEFORE deployment.", example: "Modeling a new 3-tier app architecture cost." },
+            { term: "AWS Budgets", focus: "Set custom spend thresholds and alerts.", example: "Receiving an email when spend reaches 80% of budget." },
+            { term: "Cost Explorer", focus: "Visualize historical spend and forecast.", example: "Identifying which service caused a spike last month." }
+          ]
+        }
       ]
     },
     {
-      title: "Cost Management Tools",
-      items: [
-        { term: "Pricing Calculator", focus: "Estimate costs BEFORE you start.", example: "CFO asking how much a new project will cost per month." },
-        { term: "AWS Budgets", focus: "Get alerts BEFORE you overspend.", example: "Emailing the manager when the monthly bill hits 80% of budget." },
-        { term: "Cost Explorer", focus: "Visualize past spend by service/tag.", example: "Finding which department used the most S3 storage last month." },
-        { term: "Trusted Advisor", focus: "Provides cost-saving recommendations.", example: "Identifying underutilized EC2 instances that can be stopped." },
-      ]
-    },
-    {
-      title: "Billing & Organizations",
-      items: [
-        { term: "Consolidated Billing", focus: "One bill for multiple accounts.", example: "A parent company paying for its 10 child startup accounts." },
-        { term: "AWS Organizations", focus: "Manage multiple accounts with SCPs.", example: "Setting a policy to block any account from using us-west-1." },
-        { term: "Cost Allocation Tags", focus: "Label resources to track spend.", example: "Tagging servers with 'Project-Alpha' to track its budget." },
-      ]
-    },
-    {
-      title: "AWS Support Plans",
-      items: [
-        { term: "Basic (Free)", focus: "Docs & 7 core Trusted Advisor checks.", example: "Self-study and personal projects." },
-        { term: "Developer ($29+)", focus: "Business hours support (12-24h).", example: "Testing and production-lite environments." },
-        { term: "Business ($100+)", focus: "24/7 technical support (<1h response).", example: "Production workloads needing fast tech support." },
-        { term: "Enterprise ($15k+)", focus: "TAM and <15m critical response.", example: "Large companies needing a dedicated tech manager (TAM)." },
+      id: 14,
+      title: "Part 4: Crucial Service Comparisons",
+      description: "Commonly confused services and their key differentiators.",
+      sections: [
+        {
+          title: "Auditing & Monitoring",
+          items: [
+            { term: "CloudTrail vs CloudWatch", focus: "CloudTrail = WHO (API Audit) | CloudWatch = WHAT (Performance).", example: "CloudTrail shows who deleted a disk; CloudWatch shows if a disk is full." },
+            { term: "Trusted Advisor vs Inspector", focus: "Trusted Advisor = Entire Account | Inspector = Specific EC2/Containers.", example: "Trusted Advisor finds idle DBs; Inspector finds security holes in your Linux OS." }
+          ]
+        }
       ]
     }
   ],
   concepts: [
     {
-      company: "BP",
-      industry: "Energy / Oil & Gas",
-      challenge: "Managing thousands of AWS accounts and ensuring budget compliance across multiple global teams.",
-      solution: "Implemented AWS Organizations and Consolidated Billing, using Cost Allocation Tags to accurately track and report spend by project."
-    },
-    {
-      company: "Samsung",
-      industry: "Technology / Manufacturing",
-      challenge: "Optimizing cloud costs for their massive global compute fleet supporting 1.1 billion users.",
-      solution: "Used AWS Savings Plans and Spot Instances to achieve significant discounts on steady-state and fault-tolerant workloads, reducing costs by millions."
-    },
-    {
-      company: "Lyft",
-      industry: "Transportation / Tech",
-      challenge: "Forecasting future cloud spend to align with aggressive growth targets.",
-      solution: "Leveraged AWS Cost Explorer and AWS Budgets to build predictive models and set proactive alerts, preventing surprise billing during rapid scale-up."
+      company: "Slack",
+      industry: "Communication",
+      challenge: "Managing costs across thousands of AWS accounts while maintaining explosive growth.",
+      solution: "Implemented AWS Consolidated Billing to gain volume discounts and used Cost Explorer to right-size their infrastructure."
     }
   ]
 };

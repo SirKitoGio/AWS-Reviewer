@@ -10,7 +10,9 @@ const state = {
     score: 0,
     history: [],
     shuffledQuestions: [],
-    activeStudyDomain: 1
+    activeStudyDomain: 1,
+    activeModuleIndex: 0,
+    sidebarVisible: true
 };
 
 const appContainer = document.getElementById('app-container');
@@ -48,7 +50,7 @@ function init() {
     render();
 }
 
-function setView(view, studyDomain = 1) {
+function setView(view, studyDomain = 1, moduleIndex = 0) {
     state.view = view;
     state.quizMode = null;
     state.currentQuestionIndex = 0;
@@ -59,6 +61,7 @@ function setView(view, studyDomain = 1) {
     state.shuffledQuestions = [];
     if (view === 'study') {
         state.activeStudyDomain = studyDomain;
+        state.activeModuleIndex = moduleIndex;
     }
     
     navButtons.forEach(btn => {
@@ -89,7 +92,10 @@ function startQuiz(mode, limit = null) {
 
 function enlargeDiagram(content) {
     const modal = document.getElementById('diagram-modal');
-    modal.innerHTML = `<div style="width: 90%; max-width: 1000px; padding: 20px; background: var(--dark); border-radius: 12px; border: 1px solid var(--border)">${content}</div>`;
+    modal.innerHTML = `<div style="width: 90%; max-width: 1000px; padding: 20px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.3); position: relative;">
+        <div style="position: absolute; top: 15px; right: 15px; color: var(--muted); font-size: 12px; font-weight: 700;">[CLICK ANYWHERE TO CLOSE]</div>
+        ${content}
+    </div>`;
     modal.style.display = 'flex';
 }
 
@@ -97,6 +103,7 @@ function render() {
     appContainer.innerHTML = '';
     const wrapper = document.createElement('div');
     wrapper.className = 'fade-in';
+    if (state.view === 'study') wrapper.classList.add('full-width');
     appContainer.appendChild(wrapper); 
     
     if (state.view === 'home') renderHome(wrapper);
@@ -167,154 +174,179 @@ function renderHome(container) {
         practiceGrid.appendChild(card);
     });
     container.appendChild(practiceGrid);
-
-    // VISUAL DIAGRAMS
-    const diagramsLabel = document.createElement('p');
-    diagramsLabel.className = 'section-label';
-    diagramsLabel.textContent = 'Visual Diagrams';
-    diagramsLabel.style.marginTop = '40px';
-    container.appendChild(diagramsLabel);
-
-    const diagramsGrid = document.createElement('div');
-    diagramsGrid.className = 'grid-2';
-    const sampleDiagrams = [
-        {title: 'Shared Responsibility', content: Diagrams.SharedResponsibilityDiagram},
-        {title: 'Well-Architected Framework', content: Diagrams.WellArchitecturedDiagram},
-        {title: 'Global Infrastructure', content: Diagrams.GlobalInfrastructureDiagram},
-        {title: 'S3 Storage Classes', content: Diagrams.S3StorageClassesDiagram},
-        {title: 'EC2 Pricing Comparison', content: Diagrams.PricingModelsDiagram}
-    ];
-    
-    sampleDiagrams.forEach(d => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.style.padding = '12px';
-        card.style.cursor = 'zoom-in';
-        card.innerHTML = `
-            <div style="font-size: 11px; color: var(--muted); font-weight: 700; margin-bottom: 8px; text-transform: uppercase">${d.title}</div>
-            <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 6px">${d.content}</div>
-        `;
-        card.onclick = () => enlargeDiagram(d.content);
-        diagramsGrid.appendChild(card);
-    });
-    container.appendChild(diagramsGrid);
 }
 
 function renderStudy(container) {
-    function updateStudyContent() {
-        container.innerHTML = '';
-        
-        const header = document.createElement('div');
-        header.innerHTML = `
-            <h2 style="margin-bottom: 8px">Study Materials</h2>
-            <p style="color: var(--muted); margin-bottom: 24px">Master each exam domain through structured concepts and real-world examples.</p>
-        `;
-        container.appendChild(header);
+    container.innerHTML = '';
+    
+    const layout = document.createElement('div');
+    layout.className = `study-layout fade-in ${!state.sidebarVisible ? 'sidebar-hidden' : ''}`;
+    
+    const sidebar = document.createElement('div');
+    sidebar.className = 'sidebar-menu';
 
-        const tabs = document.createElement('div');
-        tabs.style.display = 'flex';
-        tabs.style.gap = '8px';
-        tabs.style.marginBottom = '30px';
-        tabs.style.overflowX = 'auto';
-        tabs.style.paddingBottom = '8px';
-        
-        domains.forEach(d => {
-            const tab = document.createElement('button');
-            tab.className = `btn ${state.activeStudyDomain === d.id ? 'btn-primary' : 'btn-outline'}`;
-            tab.style.whiteSpace = 'nowrap';
-            tab.innerHTML = `Domain ${d.id}`;
-            tab.onclick = () => {
+    // Sidebar Header with Integrated Toggle
+    const sidebarHeader = document.createElement('div');
+    sidebarHeader.className = 'sidebar-header';
+    sidebarHeader.innerHTML = `
+        <span style="font-weight: 700; font-size: 12px; color: var(--primary); letter-spacing: 1px; text-transform: uppercase;">Curriculum</span>
+        <button class="sidebar-toggle-btn" title="${state.sidebarVisible ? 'Minimize' : 'Expand'}">
+            ${state.sidebarVisible ? '✕' : '☰'}
+        </button>
+    `;
+    sidebarHeader.querySelector('.sidebar-toggle-btn').onclick = () => {
+        state.sidebarVisible = !state.sidebarVisible;
+        renderStudy(container);
+    };
+    sidebar.appendChild(sidebarHeader);
+
+    const sidebarContent = document.createElement('div');
+    sidebarContent.className = 'sidebar-content';
+
+    domains.forEach((d, dIdx) => {
+        const domainTitle = document.createElement('div');
+        domainTitle.className = 'sidebar-domain-title';
+        domainTitle.textContent = `Domain ${d.id}: ${d.name}`;
+        sidebarContent.appendChild(domainTitle);
+
+        d.modules.forEach((m, mIdx) => {
+            const modLink = document.createElement('div');
+            modLink.className = `sidebar-module-link ${state.activeStudyDomain === d.id && state.activeModuleIndex === mIdx ? 'active' : ''}`;
+            const shortTitle = m.title.replace(/Module\s+/i, 'M').replace(/Part\s+/i, 'P');
+            modLink.textContent = shortTitle;
+            modLink.onclick = () => {
                 state.activeStudyDomain = d.id;
-                updateStudyContent();
+                state.activeModuleIndex = mIdx;
+                renderStudy(container);
+                window.scrollTo(0, 0);
             };
-            tabs.appendChild(tab);
+            sidebarContent.appendChild(modLink);
         });
-        container.appendChild(tabs);
+    });
+    
+    sidebar.appendChild(sidebarContent);
+    layout.appendChild(sidebar);
 
-        const d = domainContent[state.activeStudyDomain];
-        const contentArea = document.createElement('div');
-        contentArea.className = 'fade-in';
-        
-        contentArea.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px">
-                <div>
-                    <h3 style="color: ${d.color}; margin-bottom: 4px">${d.name}</h3>
-                    <div style="font-size: 12px; color: var(--muted)">WEIGHT: ${d.weight} • QUESTIONS: ${allQuestions.filter(q => q.domain === d.id).length}</div>
+    const d = domainContent[state.activeStudyDomain];
+    const contentArea = document.createElement('div');
+    contentArea.className = 'study-content';
+    
+    const domainIndex = domains.findIndex(dom => dom.id === state.activeStudyDomain);
+    const prevDomain = domainIndex > 0 ? domains[domainIndex - 1] : null;
+    const nextDomain = domainIndex < domains.length - 1 ? domains[domainIndex + 1] : null;
+    
+    const isFirstModule = state.activeModuleIndex === 0;
+    const isLastModule = state.activeModuleIndex === d.modules.length - 1;
+    const m = d.modules[state.activeModuleIndex];
+
+    contentArea.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px">
+            <div>
+                <h3 style="color: var(--primary); margin-bottom: 4px; font-size: 22px;">${d.name}</h3>
+                <div style="font-size: 12px; color: var(--muted)">WEIGHT: ${d.weight} • QUESTIONS: ${allQuestions.filter(q => q.domain === d.id).length}</div>
+            </div>
+            <button class="btn btn-outline" id="practice-this-domain">Practice Quiz</button>
+        </div>
+
+        ${isFirstModule && d.detailedNotes ? `
+        <div style="background: var(--bg-card); border-left: 4px solid ${d.color}; padding: 24px; border-radius: 8px; margin-bottom: 30px; font-size: 14px; line-height: 1.6; color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+            ${d.detailedNotes}
+        </div>
+        ` : ''}
+
+        ${isFirstModule && (d.diagram || d.diagram2) ? `
+        <div class="study-visuals" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px">
+            ${d.diagram ? `
+                <div class="card diagram-card" style="padding: 16px; background: var(--bg-card); cursor: zoom-in" id="diag-1">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
+                        <div style="font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 1px">${d.diagramTitle || 'CONCEPTUAL MAP'}</div>
+                        <div style="font-size: 10px; color: var(--primary)">[CLICK TO ENLARGE]</div>
+                    </div>
+                    ${d.diagram}
+                </div>` : ''}
+            ${d.diagram2 ? `
+                <div class="card diagram-card" style="padding: 16px; background: var(--bg-card); cursor: zoom-in" id="diag-2">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
+                        <div style="font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 1px">${d.diagram2Title || 'ARCHITECTURE VIEW'}</div>
+                        <div style="font-size: 10px; color: var(--primary)">[CLICK TO ENLARGE]</div>
+                    </div>
+                    ${d.diagram2}
+                </div>` : ''}
+        </div>
+        ` : ''}
+
+        <div class="lessons-container" style="margin-bottom: 40px">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                <div style="font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-transform: uppercase;">
+                    Module ${state.activeModuleIndex + 1} of ${d.modules.length}
                 </div>
-                <button class="btn btn-outline" id="practice-this-domain">Practice Quiz</button>
             </div>
-
-            ${d.detailedNotes ? `
-            <div style="background: rgba(0,0,0,0.1); border-left: 4px solid ${d.color}; padding: 24px; border-radius: 8px; margin-bottom: 30px; font-size: 14px; line-height: 1.6; color: var(--text);">
-                ${d.detailedNotes}
-            </div>
-            ` : ''}
-
-            <div class="study-visuals" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px">
-                ${d.diagram ? `
-                    <div class="card diagram-card" style="padding: 16px; background: rgba(0,0,0,0.2); cursor: zoom-in" id="diag-1">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
-                            <div style="font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 1px">${d.diagramTitle || 'CONCEPTUAL MAP'}</div>
-                            <div style="font-size: 10px; color: ${d.color}">[CLICK TO ENLARGE]</div>
-                        </div>
-                        ${d.diagram}
-                    </div>` : ''}
-                ${d.diagram2 ? `
-                    <div class="card diagram-card" style="padding: 16px; background: rgba(0,0,0,0.2); cursor: zoom-in" id="diag-2">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
-                            <div style="font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 1px">${d.diagram2Title || 'ARCHITECTURE VIEW'}</div>
-                            <div style="font-size: 10px; color: ${d.color}">[CLICK TO ENLARGE]</div>
-                        </div>
-                        ${d.diagram2}
-                    </div>` : ''}
-            </div>
-
-            <div class="lessons-container" style="display: grid; gap: 40px">
-                ${d.sections.map(s => `
-                    <div>
-                        <h4 style="font-size: 14px; margin-bottom: 16px; color: var(--muted); border-left: 3px solid ${d.color}; padding-left: 12px; text-transform: uppercase; letter-spacing: 1px">${s.title}</h4>
+            
+            <div class="module-content" style="padding: 0;">
+                <h3 style="color: var(--text); margin-bottom: 16px; font-size: 20px;">${m.title}</h3>
+                ${m.description ? `<p style="margin-bottom: 24px; font-size: 14px; line-height: 1.6; color: var(--text)">${m.description}</p>` : ''}
+                
+                ${m.sections ? m.sections.map(s => `
+                    <div style="margin-bottom: 24px">
+                        <h4 style="font-size: 12px; margin-bottom: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px">${s.title}</h4>
                         <div class="study-table" style="width: 100%; border: 1px solid var(--border); border-radius: 8px; overflow: hidden">
-                            <div style="display: grid; grid-template-columns: 180px 1fr 1fr; background: var(--card); border-bottom: 1px solid var(--border); font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px">
+                            <div style="display: grid; grid-template-columns: 180px 1fr 1fr; background: var(--bg-main); border-bottom: 1px solid var(--border); font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px">
                                 <div style="padding: 12px; border-right: 1px solid var(--border)">Concept</div>
                                 <div style="padding: 12px; border-right: 1px solid var(--border)">Key Focus</div>
                                 <div style="padding: 12px">Real-World Example</div>
                             </div>
                             ${s.items.map(item => `
-                                <div style="display: grid; grid-template-columns: 180px 1fr 1fr; border-bottom: 1px solid var(--border); font-size: 13px; min-height: 60px">
-                                    <div style="padding: 12px; border-right: 1px solid var(--border); font-weight: 700; color: ${d.color}">${item.term}</div>
+                                <div style="display: grid; grid-template-columns: 180px 1fr 1fr; border-bottom: 1px solid var(--border); background: var(--bg-card); font-size: 13px; min-height: 60px">
+                                    <div style="padding: 12px; border-right: 1px solid var(--border); font-weight: 700; color: var(--primary)">${item.term}</div>
                                     <div style="padding: 12px; border-right: 1px solid var(--border); line-height: 1.5">${item.def || item.focus || ''}</div>
-                                    <div style="padding: 12px; color: var(--muted); font-size: 12px; line-height: 1.5; background: rgba(255,255,255,0.01)">${item.example || 'Standard cloud implementation.'}</div>
+                                    <div style="padding: 12px; color: var(--muted); font-size: 12px; line-height: 1.5;">${item.example || 'Standard cloud implementation.'}</div>
                                 </div>
                             `).join('')}
                         </div>
                     </div>
-                `).join('')}
+                `).join('') : ''}
 
-                ${d.concepts ? `
-                    <div style="margin-top: 20px">
-                        <h4 style="font-size: 14px; margin-bottom: 16px; color: var(--muted); border-left: 3px solid var(--orange); padding-left: 12px; text-transform: uppercase; letter-spacing: 1px">Corporate Use Cases</h4>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
-                            ${d.concepts.map(c => `
-                                <div class="card" style="padding: 20px; border-top: 4px solid ${d.color}">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
-                                        <div style="font-weight: 700; color: ${d.color}; font-size: 15px">${c.company}</div>
-                                        <div style="font-size: 10px; color: var(--muted); font-weight: 700">${c.industry.toUpperCase()}</div>
-                                    </div>
-                                    <div style="font-size: 13px; line-height: 1.6; color: var(--text)">
-                                        <div style="margin-bottom: 8px"><span style="color: var(--muted); font-weight: 700">CHALLENGE:</span> ${c.challenge}</div>
-                                        <div><span style="color: var(--muted); font-weight: 700">AWS SOLUTION:</span> ${c.solution}</div>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                ` : ''}
+                ${m.customHtml ? `<div style="font-size: 14px; line-height: 1.6">${m.customHtml}</div>` : ''}
             </div>
-        `;
-        
-        container.appendChild(contentArea);
-        container.querySelector('#practice-this-domain').onclick = () => startQuiz(d.id);
-        
+        </div>
+
+        ${isLastModule && d.concepts ? `
+            <div style="margin-top: 40px">
+                <h4 style="font-size: 14px; margin-bottom: 16px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 12px; text-transform: uppercase; letter-spacing: 1px">Corporate Use Cases</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+                    ${d.concepts.map(c => `
+                        <div class="card" style="padding: 20px; border-top: 4px solid var(--primary)">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
+                                <div style="font-weight: 700; color: var(--primary); font-size: 15px">	extdollar{c.company}</div>
+                                <div style="font-size: 10px; color: var(--muted); font-weight: 700">	extdollar{c.industry.toUpperCase()}</div>
+                            </div>
+                            <div style="font-size: 13px; line-height: 1.6; color: var(--text)">
+                                <div style="margin-bottom: 8px"><span style="color: var(--muted); font-weight: 700">CHALLENGE:</span> 	extdollar{c.challenge}</div>
+                                <div><span style="color: var(--muted); font-weight: 700">AWS SOLUTION:</span> 	extdollar{c.solution}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        ` : ''}
+
+        <div style="display: flex; justify-content: space-between; margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border)">
+            ${!isFirstModule 
+                ? `<button class="btn btn-outline" id="prev-module-btn">← Previous Module</button>` 
+                : (prevDomain ? `<button class="btn btn-outline" id="prev-domain-btn">← ${prevDomain.name}</button>` : `<div></div>`)}
+            
+            ${!isLastModule
+                ? `<button class="btn btn-primary" id="next-module-btn">Next Module →</button>`
+                : (nextDomain ? `<button class="btn btn-primary" id="next-domain-btn">${nextDomain.name} →</button>` : `<button class="btn btn-primary" id="finish-study-btn">Finish & Quiz</button>`)}
+        </div>
+    `;
+    
+    layout.appendChild(contentArea);
+    container.appendChild(layout);
+    
+    container.querySelector('#practice-this-domain').onclick = () => startQuiz(d.id);
+    
+    if (isFirstModule) {
         const d1 = container.querySelector('#diag-1');
         if (d1) d1.onclick = () => enlargeDiagram(d.diagram);
         
@@ -322,7 +354,38 @@ function renderStudy(container) {
         if (d2) d2.onclick = () => enlargeDiagram(d.diagram2);
     }
 
-    updateStudyContent();
+    const prevModBtn = container.querySelector('#prev-module-btn');
+    if (prevModBtn) prevModBtn.onclick = () => {
+        state.activeModuleIndex--;
+        renderStudy(container);
+        window.scrollTo(0, 0);
+    };
+
+    const prevDomBtn = container.querySelector('#prev-domain-btn');
+    if (prevDomBtn) prevDomBtn.onclick = () => {
+        state.activeStudyDomain = prevDomain.id;
+        state.activeModuleIndex = prevDomain.modules.length - 1;
+        renderStudy(container);
+        window.scrollTo(0, 0);
+    };
+
+    const nextModBtn = container.querySelector('#next-module-btn');
+    if (nextModBtn) nextModBtn.onclick = () => {
+        state.activeModuleIndex++;
+        renderStudy(container);
+        window.scrollTo(0, 0);
+    };
+
+    const nextDomBtn = container.querySelector('#next-domain-btn');
+    if (nextDomBtn) nextDomBtn.onclick = () => {
+        state.activeStudyDomain = nextDomain.id;
+        state.activeModuleIndex = 0;
+        renderStudy(container);
+        window.scrollTo(0, 0);
+    };
+
+    const finishBtn = container.querySelector('#finish-study-btn');
+    if (finishBtn) finishBtn.onclick = () => startQuiz('all');
 }
 
 function renderTips(container) {

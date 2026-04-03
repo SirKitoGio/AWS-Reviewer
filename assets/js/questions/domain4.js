@@ -1,5 +1,62 @@
 export const domain4Questions = [
   {
+    "id": "new4-1",
+    "domain": 4,
+    "question": "The use of which AWS feature allows companies to track and categorize spending on a detailed level?",
+    "options": [
+      "AWS Budgets",
+      "Cost allocation tags",
+      "Consolidated billing",
+      "AWS Marketplace"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "By applying a tag (e.g., Environment=Production, Department=Marketing) to resources, you can filter your AWS bill."
+  },
+  {
+    "id": "new4-2",
+    "domain": 4,
+    "question": "Which of the following Reserved Instance pricing models provides the highest average savings vs On-Demand?",
+    "options": [
+      "One-year, No Upfront",
+      "One-year, All Upfront",
+      "Three-year, No Upfront",
+      "Three-year, All Upfront"
+    ],
+    "correct": 3,
+    "multi": false,
+    "explanation": "The longest commitment time combined with paying the entire amount upfront yields the maximum possible discount."
+  },
+  {
+    "id": "new4-3",
+    "domain": 4,
+    "question": "Which of the following are advantages of AWS consolidated billing? (Choose two.)",
+    "options": [
+      "Receive one bill for multiple accounts",
+      "Potential volume discounts as usage is combined",
+      "Automatic right-sizing of EC2 instances",
+      "Free access to Enterprise Support",
+      "Unlimited usage of the AWS Free Tier"
+    ],
+    "correct": [0, 1],
+    "multi": true,
+    "explanation": "Consolidated billing provides one bill and allows for volume discounts across all accounts in the organization."
+  },
+  {
+    "id": "new4-4",
+    "domain": 4,
+    "question": "Which is the minimum AWS Support plan that allows for one-hour target response time for support cases?",
+    "options": [
+      "Developer",
+      "Business",
+      "Enterprise On-Ramp",
+      "Enterprise"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Business support introduces the 1-hour SLA for production system impairments."
+  },
+  {
     "id": 5,
     "domain": 4,
     "question": "A customer would like to design and build a new workload on AWS Cloud but does not have the AWS-related software technical expertise in-house. Which of the following AWS programs can a customer take advantage of to achieve that outcome?",

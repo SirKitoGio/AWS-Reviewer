@@ -2,93 +2,154 @@ import { GlobalInfrastructureDiagram, S3StorageClassesDiagram } from '../diagram
 
 export const domain3 = {
   id: 3,
-  name: "Cloud Technology & Services",
+  name: "Cloud Technology and Services",
   weight: "34%",
-  color: "#3FB950",
+  color: "var(--primary)",
   icon: "",
-  diagramTitle: "Global Infrastructure Hierarchy",
+  diagramTitle: "Global Infrastructure Architecture",
   diagram: GlobalInfrastructureDiagram,
-  diagram2Title: "S3 Storage Classes Comparison",
+  diagram2Title: "S3 Storage Classes Architecture",
   diagram2: S3StorageClassesDiagram,
   detailedNotes: `
     <div class="detailed-notes-content">
-      <p>This domain is all about choosing the right tool for the job to optimize performance, scalability, and cost.</p>
-      <br>
-      <h4 style="color: #3FB950; margin-bottom: 8px;">Compute Services</h4>
-      <p>Developers decide between provisioning traditional virtual machines with Amazon EC2 for full OS control, or using AWS Lambda for a serverless architecture where code runs in response to events without needing to manage the underlying servers.</p>
-      <br>
-      <h4 style="color: #3FB950; margin-bottom: 8px;">Storage & Databases</h4>
-      <p>Architects select Amazon S3 for scalable object storage and static websites, Amazon EBS for persistent block storage attached to EC2 instances, or Amazon Redshift specifically when a scalable data warehouse is needed for complex analytics.</p>
-      <br>
-      <h4 style="color: #3FB950; margin-bottom: 8px;">Global Infrastructure</h4>
-      <p>Network engineers use Edge Locations and Amazon CloudFront (a Content Delivery Network) to cache content close to end-users worldwide, dramatically reducing latency for global applications.</p>
-      <br>
-      <h4 style="color: #3FB950; margin-bottom: 8px;">Networking & Content Delivery</h4>
-      <ul style="padding-left: 20px;">
-        <li style="margin-bottom: 6px;"><b>Amazon VPC (Virtual Private Cloud):</b> A logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define.</li>
-        <li style="margin-bottom: 6px;"><b>Amazon Route 53:</b> A highly available and scalable cloud Domain Name System (DNS) web service that routes users to internet applications.</li>
-      </ul>
+      <p>This domain covers the core AWS services: Compute, Storage, Networking, Databases, and Application Integration.</p>
     </div>
   `,
-  sections: [
+  modules: [
     {
-      title: "Global Infrastructure",
-      items: [
-        { term: "Regions", focus: "Physical location with 2+ AZs.", example: "us-east-1 (N. Virginia) or eu-west-1 (Ireland)." },
-        { term: "Availability Zones (AZ)", focus: "One or more discrete data centers with redundant power.", example: "us-east-1a and us-east-1b in the same Region." },
-        { term: "Edge Locations", focus: "450+ mini DCs for content delivery (CDN).", example: "Amazon CloudFront using an Edge Location in New York to serve local users faster." },
-        { term: "Local Zones", focus: "Place infra near large population centers.", example: "Running a gaming server in Los Angeles for lowest latency." },
+      id: 2,
+      title: "Module 2 & 3: Compute in the Cloud",
+      description: "AWS compute models vary by the level of abstraction provided.",
+      customHtml: `
+        <div class="card diagram-card" style="padding: 16px; background: var(--bg-card); cursor: zoom-in; margin-bottom: 30px;" onclick="enlargeDiagram(Diagrams.ComputeModelsDiagram)">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
+                <div style="font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 1px">COMPUTE MODELS</div>
+                <div style="font-size: 10px; color: var(--primary)">[CLICK TO ENLARGE]</div>
+            </div>
+            \${Diagrams.ComputeModelsDiagram}
+        </div>
+      `,
+      sections: [
+        {
+          title: "EC2 Instance Families",
+          items: [
+            { term: "Compute Optimized (C)", focus: "High-performance processors.", example: "Batch processing and media transcoding." },
+            { term: "Memory Optimized (R)", focus: "High RAM footprint.", example: "Real-time big data analytics (Redis)." },
+            { term: "Storage Optimized (I/D)", focus: "High, sequential read/write.", example: "NoSQL databases and data warehousing." },
+            { term: "Accelerated (P/G)", focus: "Hardware accelerators (GPUs).", example: "Machine Learning model training." },
+            { term: "General Purpose (M/T)", focus: "Balanced compute, memory, and network.", example: "Development environments and basic web servers." }
+          ]
+        },
+        {
+          title: "Elasticity & Traffic",
+          items: [
+            { term: "Auto Scaling", focus: "Adds (scaling out) or removes (scaling in) instances.", example: "Scaling based on CPU utilization." },
+            { term: "Load Balancing (ELB)", focus: "Distributes incoming traffic across multiple targets.", example: "Distributing HTTP requests across multiple AZs." }
+          ]
+        }
       ]
     },
     {
-      title: "Compute Services",
-      items: [
-        { term: "Amazon EC2", focus: "Virtual VMs (IaaS); full control of OS.", example: "Hosting a custom WordPress site on an Ubuntu instance." },
-        { term: "AWS Lambda", focus: "Serverless code—no server management.", example: "Triggering a resize script every time an image is uploaded to S3." },
-        { term: "AWS Fargate", focus: "Serverless container management.", example: "Running a Docker container without managing the underlying EC2 host." },
-        { term: "AWS Elastic Beanstalk", focus: "PaaS; upload code, AWS handles deployment.", example: "Uploading a Java .war file and AWS sets up LB, EC2, and ASG." },
+      id: 4,
+      title: "Module 4: Going Global",
+      description: "AWS's massive global footprint enables high availability and low latency.",
+      sections: [
+        {
+          title: "Infrastructure Components",
+          items: [
+            { term: "Regions", focus: "Large geographic areas with 2+ Availability Zones.", example: "Choosing us-east-1 for proximity to US customers." },
+            { term: "Availability Zones (AZs)", focus: "One or more discrete data centers with redundant power.", example: "Separated by miles to prevent localized disasters." },
+            { term: "Edge Locations", focus: "Caching centers for CloudFront (CDN).", example: "Caching static content closer to users worldwide." },
+            { term: "AWS Local Zones", focus: "Brings compute/storage closer to large populations.", example: "Millisecond latency for workloads in specific cities." }
+          ]
+        }
       ]
     },
     {
-      title: "Networking Services",
-      items: [
-        { term: "Amazon VPC", focus: "Private network segment on AWS.", example: "Creating a 'Public' and 'Private' subnet for a multi-tier app." },
-        { term: "Internet Gateway", focus: "Connects your VPC to the internet.", example: "Adding an IGW to a route table to make a subnet public." },
-        { term: "Elastic Load Balancing", focus: "Distributes traffic across EC2 instances.", example: "Balancing users between 3 web servers for reliability." },
-        { term: "Amazon Route 53", focus: "DNS and Domain Registration.", example: "Routing www.myapp.com to a healthy Load Balancer." },
-        { term: "AWS Direct Connect", focus: "Private physical line from your DC to AWS.", example: "A bank creating a secure link between their data center and us-east-1." },
+      id: 5,
+      title: "Module 5: Networking (VPC)",
+      description: "Logically isolated sections of the AWS Cloud.",
+      sections: [
+        {
+          title: "Subnets & Firewalls",
+          items: [
+            { term: "Public Subnet", focus: "Has a route to the Internet Gateway (IGW).", example: "Hosting public-facing web servers." },
+            { term: "Private Subnet", focus: "No direct route to the internet.", example: "Hosting backend databases for security." },
+            { term: "Security Groups", focus: "Stateful instance-level firewalls.", example: "Allowing port 80 in; return traffic is automatically allowed." },
+            { term: "Network ACLs", focus: "Stateless subnet-level firewalls.", example: "Requiring explicit rules for both directions." }
+          ]
+        }
       ]
     },
     {
-      title: "Storage & Databases",
-      items: [
-        { term: "Amazon S3", focus: "Unlimited Object Storage; high durability.", example: "Storing millions of backup logs and static images." },
-        { term: "Amazon EBS", focus: "Block Storage (Network Drive) for EC2.", example: "A persistent C: drive for a Windows EC2 instance." },
-        { term: "Amazon EFS", focus: "Shared network file system for Linux.", example: "Multiple web servers sharing the same /var/www directory." },
-        { term: "Amazon RDS", focus: "Managed Relational Database.", example: "Hosting a MySQL database where AWS handles backups." },
-        { term: "Amazon DynamoDB", focus: "NoSQL Database; single-digit ms performance.", example: "Storing shopping cart state for a high-traffic mobile app." },
-        { term: "Amazon Aurora", focus: "AWS-proprietary database; 5x faster than MySQL.", example: "Enterprise app requiring highest speed and reliability." },
+      id: 6,
+      title: "Module 6: Storage",
+      description: "Choosing the right storage based on persistence and access patterns.",
+      sections: [
+        {
+          title: "Storage Types",
+          items: [
+            { term: "Amazon S3", focus: "Object storage in buckets. 11 nines of durability.", example: "Hosting static assets and enterprise backups." },
+            { term: "Amazon EBS", focus: "Block storage (Persistent network drives).", example: "Storing the boot volume OS for an EC2 instance." },
+            { term: "Instance Store", focus: "Ephemeral block storage (Directly attached).", example: "Temporary cache or scratch data." },
+            { term: "Amazon EFS", focus: "Managed NFS for Linux (Shared file system).", example: "Shared media directory for a fleet of servers." }
+          ]
+        }
+      ]
+    },
+    {
+      id: 7,
+      title: "Module 7: Databases",
+      description: "Managed database services reduce operational overhead.",
+      sections: [
+        {
+          title: "Database Services",
+          items: [
+            { term: "Amazon RDS", focus: "Managed service for Relational (SQL) DBs.", example: "MySQL, PostgreSQL, Oracle, SQL Server." },
+            { term: "Amazon Aurora", focus: "Cloud-native SQL DB. 5x faster than MySQL.", example: "Highly available DB across 3 AZs." },
+            { term: "Amazon DynamoDB", focus: "Serverless key-value NoSQL DB.", example: "High-performance apps at any scale." },
+            { term: "Amazon ElastiCache", focus: "In-memory caching (Redis/Memcached).", example: "Alleviating database load for fast reads." }
+          ]
+        }
+      ]
+    },
+    {
+      id: 8,
+      title: "Module 8: Application Integration",
+      description: "Decoupling and communicating between services.",
+      sections: [
+        {
+          title: "Integration Tools",
+          items: [
+            { term: "Amazon SQS", focus: "Message queuing for decoupling.", example: "Placing orders in a queue for backend processing." },
+            { term: "Amazon SNS", focus: "Pub/Sub messaging service.", example: "Fanning out notifications to email and SMS." },
+            { term: "Amazon EventBridge", focus: "Serverless event bus.", example: "Connecting SaaS apps and AWS services." }
+          ]
+        }
+      ]
+    },
+    {
+      id: 10,
+      title: "Module 10 (Part B): Monitoring & Guidance",
+      description: "Keeping systems healthy and optimized.",
+      sections: [
+        {
+          title: "Performance Tools",
+          items: [
+            { term: "Amazon CloudWatch", focus: "Performance Monitoring - Metrics and Alarms.", example: "Setting an alarm if CPU goes above 80%." },
+            { term: "AWS Trusted Advisor", focus: "Real-time guidance across 5 categories.", example: "Identifying idle resources to save costs." },
+            { term: "AWS Health Dashboard", focus: "Personalized view of AWS service status.", example: "Checking if a specific AZ outage affects your RDS." }
+          ]
+        }
       ]
     }
   ],
   concepts: [
     {
-      company: "The Coca-Cola Company",
-      industry: "Consumer Goods",
-      challenge: "Managing a massive global supply chain with real-time data needs.",
-      solution: "Migrated to a serverless architecture using AWS Lambda and Amazon DynamoDB to handle millions of transactions per day without managing servers."
-    },
-    {
       company: "Expedia",
-      industry: "Travel / Booking",
-      challenge: "Serving high-resolution travel photos to users globally with low latency.",
-      solution: "Implemented Amazon S3 for storage and Amazon CloudFront (CDN) to cache images at Edge Locations near their worldwide customers."
-    },
-    {
-      company: "Formula 1",
-      industry: "Sports / Data",
-      challenge: "Analyzing 1.1 million data points per second from 300+ sensors on racing cars.",
-      solution: "Used Amazon SageMaker (AI/ML) and AWS Redshift to provide real-time racing statistics and performance predictions to fans."
+      industry: "Travel",
+      challenge: "Processing massive amounts of real-time search data across the globe.",
+      solution: "Used Amazon ElastiCache to store search results in-memory, reducing latency and database pressure."
     }
   ]
 };
