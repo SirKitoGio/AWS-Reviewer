@@ -51,7 +51,7 @@ The **AWS CCP Reviewer** is an interactive, high-performance study platform desi
 - **Spaced Repetition System (SRS):** Re-surface concepts/questions the user frequently gets wrong.
 - **Dynamic Content Injection:** Allow auto-generation of modules from external data files.
 
-### Phase 4: Active Recall
+### Phase 4: Keep Method
 - **Interactive Flashcards:** A dedicated mode to flip through key terms from the modules for quick recall.
 
 ## 6. Maintenance Guidelines

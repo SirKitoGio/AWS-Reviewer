@@ -49,6 +49,15 @@ export const domain1: Domain = {
       `,
       sections: [
         {
+          title: "High-Level AWS Services Overview",
+          items: [
+            { term: "Compute Services", focus: "The 'Muscle & Brains' - process data and host apps.", example: "EC2, Lambda, Fargate" },
+            { term: "Storage Services", focus: "The 'Filing Cabinets' - store files and raw data safely.", example: "S3, EFS, EBS" },
+            { term: "Database Services", focus: "The 'Organized Data Engines' - queryable structured data.", example: "RDS, DynamoDB, Redshift" },
+            { term: "Networking Services", focus: "The 'Roads & Traffic Cops' - secure data travel and routing.", example: "VPC, Route 53, CloudFront" }
+          ]
+        },
+        {
           title: "The Six Advantages of Cloud Computing",
           items: [
             { term: "Trade CapEx for Variable Expense", focus: "Pay only for what you consume instead of heavy upfront data center investments.", example: "Paying $0.05/hour for an EC2 instance." },
@@ -197,6 +206,16 @@ export const domain2: Domain = {
       `,
       sections: [
         {
+          title: "Security, Identity, & Compliance Overview (High-Level)",
+          items: [
+            { term: "AWS IAM", focus: "Controls who can access specific AWS services.", example: "Creating a developer user with limited S3 access." },
+            { term: "Amazon Cognito", focus: "Handles user sign-up/sign-in for apps.", example: "Adding 'Sign in with Google' to your mobile application." },
+            { term: "AWS Shield", focus: "Managed DDoS protection.", example: "Defending your app against massive Layer 3/4 flood attacks." },
+            { term: "AWS Artifact", focus: "Portal for compliance and audit reports.", example: "Downloading ISO certification reports for your auditors." },
+            { term: "AWS KMS", focus: "Creates and controls cryptographic keys.", example: "Encrypting your S3 data with keys you control." }
+          ]
+        },
+        {
           title: "Identity & Access Management (IAM)",
           items: [
             { term: "Least Privilege", focus: "Grant minimum required permissions to limit blast radius.", example: "s3:GetObject instead of FullAccess." },
@@ -303,6 +322,19 @@ export const domain3: Domain = {
       `,
       sections: [
         {
+          title: "Compute Services Overview (High-Level)",
+          items: [
+            { term: "Amazon EC2", focus: "Virtual servers in the cloud (you manage the OS).", example: "Hosting a custom website on a Linux instance." },
+            { term: "AWS Lambda", focus: "Serverless compute (run code without managing servers).", example: "Automatically resizing images uploaded to S3." },
+            { term: "AWS Elastic Beanstalk", focus: "PaaS deployment tool (automatic provisioning).", example: "Quickly deploying a Java app without setting up EC2/VPC." },
+            { term: "Amazon EC2 Auto Scaling", focus: "Adds/removes EC2 instances based on demand.", example: "Scaling out during Black Friday traffic spikes." },
+            { term: "Amazon ECS", focus: "Runs Docker containers.", example: "Managing a microservices architecture with Docker." },
+            { term: "Amazon EKS", focus: "Runs Kubernetes containers.", example: "Orchestrating complex containerized apps with K8s." },
+            { term: "Amazon ECR", focus: "Secure storage for container images.", example: "Storing your Docker images for deployment." },
+            { term: "AWS Fargate", focus: "Serverless compute for containers (ECS/EKS).", example: "Running containers without managing EC2 servers." }
+          ]
+        },
+        {
           title: "Interacting with AWS",
           items: [
             { term: "Management Console", focus: "GUI browser interface. Great for one-time tasks.", example: "Manually checking a resource's status." },
@@ -385,6 +417,15 @@ export const domain3: Domain = {
       description: "Logically isolated sections of the AWS Cloud and DNS routing.",
       sections: [
         {
+          title: "Networking & Content Delivery Overview (High-Level)",
+          items: [
+            { term: "Amazon VPC", focus: "Your secure, private network boundary inside AWS.", example: "Creating a subnet for your private database servers." },
+            { term: "Amazon Route 53", focus: "Highly available Domain Name System (DNS).", example: "Routing your domain 'example.com' to an AWS resource." },
+            { term: "Amazon CloudFront", focus: "Content Delivery Network (CDN) for fast downloads.", example: "Caching videos at edge locations for users in Australia." },
+            { term: "Elastic Load Balancing (ELB)", focus: "Distributes incoming traffic across multiple targets.", example: "Sharing load between 3 EC2 instances in different AZs." }
+          ]
+        },
+        {
           title: "VPC Networking",
           items: [
             { term: "Subnets", focus: "Public (has IGW route) vs Private (no direct internet route).", example: "Databases go in Private subnets." },
@@ -432,6 +473,15 @@ export const domain3: Domain = {
       `,
       sections: [
         {
+          title: "Storage Services Overview (High-Level)",
+          items: [
+            { term: "Amazon S3", focus: "Object storage for unstructured files.", example: "Storing millions of profile pictures or document backups." },
+            { term: "Amazon S3 Glacier", focus: "Ultra-cheap, 'cold' storage for archiving.", example: "Keeping financial records for 7 years for compliance." },
+            { term: "Amazon EFS", focus: "Shared network file system for Linux EC2.", example: "A group of EC2 instances sharing a data repository." },
+            { term: "Amazon EBS", focus: "Virtual hard drives attached to single EC2 instances.", example: "Providing block storage for an EC2 database server." }
+          ]
+        },
+        {
           title: "Storage Types & Comparisons",
           items: [
             { term: "Amazon S3", focus: "Scalable Object Storage via Web API. Designed for 99.999999999% durability.", example: "Ideal for data lakes, off-site backups, and static website hosting." },
@@ -456,6 +506,15 @@ export const domain3: Domain = {
       title: "Module 7: Databases",
       description: "Relational, NoSQL, and specialized managed database services.",
       sections: [
+        {
+          title: "Database Services Overview (High-Level)",
+          items: [
+            { term: "Amazon RDS", focus: "Managed relational (SQL) databases.", example: "Running a MySQL or PostgreSQL database for an e-commerce site." },
+            { term: "Amazon DynamoDB", focus: "Fast, fully managed NoSQL database.", example: "Storing user session data with sub-millisecond latency." },
+            { term: "Amazon Redshift", focus: "Massive data warehouse for analytics.", example: "Analyzing petabytes of historical sales data." },
+            { term: "Amazon Aurora", focus: "Enterprise-grade relational database.", example: "High-performance MySQL-compatible DB with 5x speed." }
+          ]
+        },
         {
           title: "Relational (SQL)",
           items: [
@@ -521,6 +580,19 @@ export const domain3: Domain = {
       title: "Module 11: Monitoring, Health & Guidance",
       description: "Keeping systems healthy and optimized with real-time feedback.",
       sections: [
+        {
+          title: "Management & Governance Overview (High-Level)",
+          items: [
+            { term: "AWS Trusted Advisor", focus: "Gives advice to optimize cost, security, performance.", example: "Finding idle EC2 instances to save money." },
+            { term: "AWS CloudWatch", focus: "Monitors performance metrics and logs.", example: "Setting an alarm if CPU usage goes above 80%." },
+            { term: "AWS CloudTrail", focus: "Logs API calls to track user activity ('who did what').", example: "Auditing who deleted an S3 bucket last night." },
+            { term: "AWS Well-Architected Tool", focus: "Reviews architectures against best practices.", example: "Assessing your cloud setup against the 6 pillars." },
+            { term: "AWS Auto Scaling", focus: "Unified tool to set up scaling for multiple resources.", example: "Coordinating scaling for DynamoDB and ECS together." },
+            { term: "AWS CLI & Console", focus: "Ways to interact with AWS (CLI vs. Browser).", example: "Stopping an instance via the terminal using 'aws ec2 stop-instances'." },
+            { term: "AWS Config", focus: "Records and evaluates configuration history.", example: "Tracking how a security group's rules changed over time." },
+            { term: "AWS Organizations", focus: "Centrally manages billing and security policies.", example: "Consolidating 50 accounts into one master bill." }
+          ]
+        },
         {
           title: "Operational Visibility",
           items: [
@@ -596,6 +668,14 @@ export const domain4: Domain = {
         </div>
       `,
       sections: [
+        {
+          title: "AWS Cost Management Overview (High-Level)",
+          items: [
+            { term: "AWS Cost Explorer", focus: "Visual graphs to analyze and forecast spending.", example: "Projecting next month's bill based on current usage." },
+            { term: "AWS Budgets", focus: "Sets custom spending limits and alerts.", example: "Getting an email when your bill hits $100." },
+            { term: "AWS Cost & Usage Report (CUR)", focus: "Granular, raw spreadsheet of costs.", example: "Exporting detailed hourly costs to S3 for deep analysis." }
+          ]
+        },
         {
           title: "Purchasing Options",
           items: [

@@ -4,6 +4,12 @@ import { allModules, examTips, allQuestions } from "@/data";
 import { ArrowRight, Lightning, BookmarkSimple, CloudCheck } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import Image from "next/image";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 export default function Home() {
   return (
@@ -54,6 +60,38 @@ export default function Home() {
                  priority
                />
             </div>
+          </div>
+        </section>
+
+        {/* AWS Services Overview Primer */}
+        <section className="mb-32">
+          <div className="flex items-baseline justify-between mb-12 border-b border-zinc-100 pb-4">
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">AWS Service Ecosystem</h2>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">7 Core Pillars</div>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            {[
+              { label: "Compute", icon: Lightning, color: "text-orange-500", bg: "bg-orange-50", desc: "Muscle & Brains", index: 1 },
+              { label: "Storage", icon: BookmarkSimple, color: "text-blue-500", bg: "bg-blue-50", desc: "Filing Cabinets", index: 5 },
+              { label: "Database", icon: CloudCheck, color: "text-emerald-500", bg: "bg-emerald-50", desc: "Data Engines", index: 6 },
+              { label: "Network", icon: Lightning, color: "text-purple-500", bg: "bg-purple-50", desc: "Roads & Traffic", index: 4 },
+              { label: "Security", icon: CloudCheck, color: "text-red-500", bg: "bg-red-50", desc: "Bouncers & Vaults", index: 8 },
+              { label: "Management", icon: BookmarkSimple, color: "text-zinc-500", bg: "bg-zinc-50", desc: "Control Room", index: 10 },
+              { label: "Cost", icon: Lightning, color: "text-teal-500", bg: "bg-teal-50", desc: "Accountant", index: 11 },
+            ].map((item, idx) => (
+              <Link 
+                key={idx} 
+                href={`/study?index=${item.index}`}
+                className="group p-6 rounded-[2rem] bg-white border border-zinc-100 transition-all hover:shadow-lg hover:shadow-zinc-200/50 text-center"
+              >
+                <div className={cn("mx-auto mb-4 h-12 w-12 flex items-center justify-center rounded-2xl transition-transform group-hover:scale-110", item.bg, item.color)}>
+                  <item.icon weight="duotone" size={24} />
+                </div>
+                <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-900 mb-1">{item.label}</h4>
+                <p className="text-[10px] text-zinc-400 font-medium leading-tight">{item.desc}</p>
+              </Link>
+            ))}
           </div>
         </section>
 

@@ -43,9 +43,9 @@ export default function TipsPage() {
         </div>
 
         <section className="mt-32 p-12 md:p-20 rounded-[3rem] bg-zinc-50 border border-zinc-100 text-center">
-           <h2 className="mb-6">Study Tip: &quot;Active Recall&quot;</h2>
+           <h2 className="mb-6">Study Tip: &quot;Keep Method&quot;</h2>
            <p className="text-zinc-500 max-w-xl mx-auto mb-10">
-             Don&apos;t just read the modules. After each section, try to explain the concepts out loud or take a domain-specific quiz to cement the knowledge.
+             Master the <strong>Process of Elimination</strong>. On the exam, focus on identifying why three of the options are definitely wrong. If you can justify why an answer is incorrect, the one you &quot;keep&quot; is your winner.
            </p>
            <div className="flex justify-center">
               <BookOpen size={64} weight="thin" className="text-zinc-200" />

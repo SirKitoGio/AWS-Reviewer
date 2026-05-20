@@ -65,75 +65,75 @@ export const examTips = [
     "detail": "Instance Store is temporary — data is LOST if the instance stops or terminates."
   },
   {
-    "tip": "You do not need to know how to configure AWS servi",
-    "detail": "You do not need to know how to configure AWS services to pass this exam. The"
+    "tip": "Configuration focus",
+    "detail": "You do not need to know how to configure AWS services to pass this exam. The focus is on what the services do, not how to set them up."
   },
   {
-    "tip": "A score of 700/1000 roughly corresponds to answeri",
-    "detail": "A score of 700/1000 roughly corresponds to answering about 70% of scored"
+    "tip": "Passing score",
+    "detail": "A score of 700/1000 roughly corresponds to answering about 70% of scored questions correctly."
   },
   {
-    "tip": "When the exam asks about cost savings from moving ",
-    "detail": "When the exam asks about cost savings from moving to the cloud, look for"
+    "tip": "Cost savings keyword",
+    "detail": "When the exam asks about cost savings from moving to the cloud, look for the phrase 'trade capital expense for variable expense'."
   },
   {
-    "tip": "These six advantages are worth memorising",
-    "detail": "These six advantages are worth memorising. Exam questions may describe a"
+    "tip": "Six advantages",
+    "detail": "These six advantages are worth memorising. Exam questions may describe a scenario and ask which advantage it represents."
   },
   {
-    "tip": "Examquestionsmaypresentascenarioandaskwhich pillar",
-    "detail": "Examquestionsmaypresentascenarioandaskwhich pillar itrelatesto. Common"
+    "tip": "Well-Architected Pillars",
+    "detail": "Exam questions may present a scenario and ask which pillar it relates to. Common pillars include Security, Reliability, Performance Efficiency, Cost Optimization, Operational Excellence, and Sustainability."
   },
   {
-    "tip": "If the exam asks about the benefits of the AWS CAF",
-    "detail": "If the exam asks about the benefits of the AWS CAF, look for these four"
+    "tip": "AWS CAF Perspectives",
+    "detail": "If the exam asks about the benefits of the AWS Cloud Adoption Framework (CAF), look for these six perspectives: Business, People, Governance, Platform, Security, and Operations."
   },
   {
-    "tip": "For the Cloud Practitioner exam, focus on the diff",
-    "detail": "For the Cloud Practitioner exam, focus on the difference between: • Rehost (move as-is) vs Replatform (small optimisation) vs Refactor (redesign). • The exam will likely describe a scenario: “A company wants to move its"
+    "tip": "Migration Strategies (6 Rs)",
+    "detail": "For the exam, focus on the difference between: Rehost (move as-is), Replatform (small optimisation), and Refactor (redesign). A company wanting to move an app without changes is 'Rehosting'."
   },
   {
-    "tip": "Questions about managed services often ask",
-    "detail": "Questions about managed services often ask: who is responsible for patching"
+    "tip": "Patching Managed Services",
+    "detail": "Questions about managed services often ask: who is responsible for patching the guest OS? If it's EC2, you are. If it's RDS, AWS is."
   },
   {
-    "tip": "The exam often asks",
-    "detail": "The exam often asks: “Where can a customer download AWS compliance"
+    "tip": "Downloading Compliance Reports",
+    "detail": "The exam often asks: 'Where can a customer download AWS compliance reports?' The answer is always AWS Artifact."
   },
   {
-    "tip": "Exam questions often ask",
-    "detail": "Exam questions often ask: “Which task requires root user credentials?” Common"
+    "tip": "Root User Tasks",
+    "detail": "Exam questions often ask: 'Which task requires root user credentials?' Common answers include changing the AWS support plan, closing the account, and changing account settings."
   },
   {
-    "tip": "• AWS Shieldprotects against DDoS attacks at the n",
-    "detail": "• AWS Shieldprotects against DDoS attacks at the network layer(Layers 3/4). • AWS WAF protects against application-layer attacks (Layer 7\\) such as"
+    "tip": "Shield vs WAF",
+    "detail": "AWS Shield protects against DDoS attacks at the network layer (Layers 3/4). AWS WAF protects against application-layer attacks (Layer 7) such as SQL injection and cross-site scripting (XSS)."
   },
   {
-    "tip": "If an exam question asks where to find third-party",
-    "detail": "If an exam question asks where to find third-party security tools that integrate"
+    "tip": "Finding Third-Party Tools",
+    "detail": "If an exam question asks where to find third-party security tools that integrate with AWS, the answer is the AWS Marketplace."
   },
   {
-    "tip": "“Availability Zones do not share single points of ",
-    "detail": "“Availability Zones do not share single points of failure” is an explicit exam"
+    "tip": "Availability Zone Resilience",
+    "detail": "Availability Zones do not share single points of failure. They have independent power, cooling, and network connectivity."
   },
   {
-    "tip": "For the exam, know the family names and their prim",
-    "detail": "For the exam, know the family names and their primary purpose. If a"
+    "tip": "Instance Family Naming",
+    "detail": "For the exam, know the family names and their primary purpose. If a scenario needs high memory, look for R instances. For compute, look for C instances."
   },
   {
-    "tip": "Aurora is AWS-proprietary — it’s not an open-sourc",
-    "detail": "Aurora is AWS-proprietary — it’s not an open-source database. However, it"
+    "tip": "Amazon Aurora Compatibility",
+    "detail": "Aurora is AWS-proprietary — it’s not an open-source database. However, it is compatible with MySQL and PostgreSQL."
   },
   {
-    "tip": "A common exam format is a scenario describing a bu",
-    "detail": "A common exam format is a scenario describing a business need, and you must"
+    "tip": "Scenario-Based Service Selection",
+    "detail": "A common exam format is a scenario describing a business need, and you must select the most cost-effective service that meets the requirements."
   },
   {
-    "tip": "Remember",
-    "detail": "Remember: incoming data to AWS is free. Outgoing data to the internet"
+    "tip": "Data Transfer Costs",
+    "detail": "Remember: incoming data to AWS is free. Outgoing data to the internet is charged."
   },
   {
-    "tip": "Memorise these key differences",
-    "detail": "Memorise these key differences: • TAM (Technical Account Manager): Enterprise Support only (and"
+    "tip": "TAM and Concierge Support",
+    "detail": "Memorise these key differences: TAM (Technical Account Manager) and the Personal Concierge service are only available at the Enterprise Support level."
   }
 ];

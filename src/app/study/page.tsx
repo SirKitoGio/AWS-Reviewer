@@ -40,11 +40,11 @@ function StudyContent() {
       {/* Sidebar - Flat Linear List */}
       <aside className="w-full md:w-80 border-r border-zinc-200 bg-white overflow-y-auto max-h-[400px] md:max-h-[calc(100dvh-64px)] sticky top-16 z-20">
         <div className="p-8 border-b border-zinc-100 flex items-center justify-between bg-white/50 backdrop-blur-sm sticky top-0 z-10">
-          <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2">
+          <h2 className="text-sm font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2">
             <List weight="bold" />
             Curriculum
           </h2>
-          <span className="text-[10px] font-bold text-zinc-300 tabular-nums">
+          <span className="text-xs font-bold text-zinc-300 tabular-nums">
             {currentIndex + 1} / {allModules.length}
           </span>
         </div>
@@ -54,14 +54,14 @@ function StudyContent() {
               key={idx}
               onClick={() => handleModuleChange(idx)}
               className={cn(
-                "w-full text-left px-4 py-3 rounded-xl text-xs font-semibold transition-all flex items-center gap-4 group",
+                "w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-4 group",
                 currentIndex === idx
                   ? "bg-zinc-950 text-white shadow-xl shadow-zinc-200"
                   : "text-zinc-500 hover:bg-zinc-50"
               )}
             >
               <span className={cn(
-                "text-[10px] font-black tabular-nums transition-colors",
+                "text-xs font-black tabular-nums transition-colors",
                 currentIndex === idx ? "text-emerald-400" : "text-zinc-200 group-hover:text-zinc-300"
               )}>
                 {String(idx + 1).padStart(2, '0')}
@@ -92,10 +92,10 @@ function StudyContent() {
                   {activeModule.domainName}
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 mb-6 leading-tight">
+              <h1 className="text-4xl md:text-6xl font-black tracking-tight text-zinc-900 mb-8 leading-[0.9]">
                 {activeModule.title}
               </h1>
-              <p className="text-xl text-zinc-500 leading-relaxed max-w-2xl">
+              <p className="text-xl text-zinc-500 leading-relaxed max-w-xl">
                 {activeModule.description}
               </p>
               <div className="mt-8 flex gap-4">
@@ -109,40 +109,58 @@ function StudyContent() {
               </div>
             </header>
 
-            <div className="space-y-20">
+            <div className="space-y-32">
               {activeModule.sections?.map((section, sIdx) => (
-                <section key={sIdx} className="space-y-10">
-                  <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 border-l-2 border-zinc-200 pl-4">
+                <section key={sIdx} className="space-y-12">
+                  <h2 className="text-sm font-black uppercase tracking-[0.3em] text-zinc-400 border-l-2 border-zinc-200 pl-4">
                     {section.title}
                   </h2>
-                  <div className="grid grid-cols-1 gap-6">
+                  <motion.div 
+                    variants={{
+                      hidden: { opacity: 0 },
+                      show: {
+                        opacity: 1,
+                        transition: { staggerChildren: 0.1 }
+                      }
+                    }}
+                    initial="hidden"
+                    animate="show"
+                    className="divide-y divide-zinc-100"
+                  >
                     {section.items.map((item, iIdx) => (
-                      <div key={iIdx} className="group grid grid-cols-1 md:grid-cols-12 gap-6 items-start p-8 rounded-3xl bg-white border border-zinc-100 transition-all hover:shadow-2xl hover:shadow-zinc-200/50">
-                        <div className="md:col-span-4">
-                          <h3 className="text-lg font-bold text-zinc-900 group-hover:text-emerald-700 transition-colors">
+                      <motion.div 
+                        key={iIdx}
+                        variants={{
+                          hidden: { opacity: 0, y: 10 },
+                          show: { opacity: 1, y: 0 }
+                        }}
+                        className="group grid grid-cols-1 md:grid-cols-12 gap-8 py-12 first:pt-0 last:pb-0 transition-colors"
+                      >
+                        <div className="md:col-span-4 flex flex-col items-start gap-4">
+                          <span className="inline-flex items-center px-4 py-2 rounded-xl bg-zinc-50 border border-zinc-200/50 font-mono text-sm font-bold tracking-tight text-zinc-600 transition-all group-hover:bg-emerald-50 group-hover:border-emerald-200 group-hover:text-emerald-700 shadow-sm">
                             {item.term}
-                          </h3>
+                          </span>
                         </div>
-                        <div className="md:col-span-8 space-y-4">
-                          <p className="text-zinc-600 text-sm leading-relaxed">
+                        <div className="md:col-span-8 space-y-6">
+                          <p className="text-xl text-zinc-700 leading-relaxed max-w-[55ch]">
                             {item.focus || item.def}
                           </p>
-                          <div className="p-4 rounded-xl bg-zinc-50 border border-zinc-100">
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 block mb-1">Example</span>
-                            <p className="text-xs text-zinc-500 italic">
+                          <div className="border-l-2 border-emerald-100 pl-6 py-2 bg-emerald-50/20 rounded-r-2xl">
+                            <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 block mb-2">Practical Case</span>
+                            <p className="text-base text-zinc-600 italic leading-relaxed">
                               {item.example}
                             </p>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 </section>
               ))}
 
               {activeModule.customHtml && (
                 <div 
-                  className="prose prose-zinc max-w-none editorial-custom-html"
+                  className="prose prose-zinc max-w-none editorial-custom-html pt-12 border-t border-zinc-100"
                   dangerouslySetInnerHTML={{ __html: activeModule.customHtml }}
                 />
               )}
