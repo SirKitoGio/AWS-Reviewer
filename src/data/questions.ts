@@ -2997,6 +2997,504 @@ export const allQuestions: Question[] = [
     "correct": 2,
     "multi": false,
     "explanation": "C (AWS Config) AWS Config continuously records the configuration state of your AWS resources and evaluates them against defined compliance rules. It identifies resources that are non-compliant and tracks configuration changes over time. 88AWS CLF-C02 Study Guide CHAPTER 8\\. ANSWER KEY AND EXPLANATIONS • A — CloudWatch: Monitors operational metrics (CPU, latency, errors). Does not evaluate resource configurations for compliance. • B — CloudTrail: Records API calls (who did what). Provides audit history but does not continuously evaluate configuration compliance. • D — AWS Audit Manager: Automates evidence collection for compliance frameworks. Relies on Config and CloudTrail data but is focused on generating audit reports, not real-time compliance evaluation."
+  },
+  {
+    "id": "td1-1",
+    "domain": 1,
+    "question": "Which of the following Reserved Instance pricing models provides the highest average savings vs On-Demand?",
+    "options": [
+      "One-year, No Upfront, Standard RI",
+      "One-year, All Upfront, Convertible RI",
+      "Three-year, All Upfront, Standard RI",
+      "Three-year, No Upfront, Convertible RI"
+    ],
+    "correct": 2,
+    "multi": false,
+    "explanation": "Three-year commitment, paying All Upfront, and selecting Standard (rather than Convertible) provides the maximum possible discount. Each concession—shorter term, no upfront payment, or Convertible flexibility—reduces the savings percentage."
+  },
+  {
+    "id": "td1-2",
+    "domain": 1,
+    "question": "Which of the following are advantages of AWS consolidated billing? (Choose two.)",
+    "options": [
+      "Receive one bill for multiple accounts.",
+      "Service limits increase by default in all accounts.",
+      "A fixed discount on the monthly bill.",
+      "Potential volume discounts as usage across accounts is combined.",
+      "Automatic extension of the master account's support plan."
+    ],
+    "correct": [0, 3],
+    "multi": true,
+    "explanation": "Consolidated billing simplifies payments by providing a single monthly invoice for multiple accounts, and aggregates usage across those accounts to qualify for tiered volume discounts."
+  },
+  {
+    "id": "td1-3",
+    "domain": 1,
+    "question": "A company is migrating a non-interruptible workload running for a three-year time frame. Which EC2 pricing offers the most savings?",
+    "options": [
+      "Amazon EC2 Spot Instances",
+      "Amazon EC2 Dedicated Instances",
+      "Amazon EC2 On-Demand Instances",
+      "Amazon EC2 Reserved Instances"
+    ],
+    "correct": 3,
+    "multi": false,
+    "explanation": "Reserved Instances with a 3-year commitment offer up to 72% savings compared to On-Demand for steady, non-interruptible workloads. Spot instances are cheaper but can be interrupted, making them unsuitable for non-interruptible workloads."
+  },
+  {
+    "id": "td1-4",
+    "domain": 1,
+    "question": "Which is the minimum AWS Support plan that allows for one-hour target response time for support cases?",
+    "options": [
+      "Enterprise",
+      "Business",
+      "Developer",
+      "Basic"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Business Support offers a target response time of less than 1 hour for urgent/production-down cases. Developer Support response time is 12-24 hours, Enterprise is under 15 minutes (and includes a TAM), and Basic offers no technical support SLA."
+  },
+  {
+    "id": "td1-5",
+    "domain": 1,
+    "question": "Which service should a customer use to consolidate and centrally manage multiple AWS accounts?",
+    "options": [
+      "AWS IAM",
+      "AWS Organizations",
+      "AWS Schema Conversion Tool",
+      "AWS Config"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "AWS Organizations is the dedicated service to consolidate and centrally manage multiple AWS accounts, enabling consolidated billing, Service Control Policies (SCPs), and grouping accounts into Organizational Units (OUs)."
+  },
+  {
+    "id": "td1-6",
+    "domain": 1,
+    "question": "Which of the following does AWS automatically handle for you? (Select TWO.)",
+    "options": [
+      "Introduce updates and patches to EC2 hypervisors",
+      "Secure AWS data centers from environmental hazards",
+      "Provide web application firewall protection to your public endpoints.",
+      "Makes sure your data is safely kept and replicated between AZs",
+      "Introduce updates and patches to EC2 guest operating systems"
+    ],
+    "correct": [0, 1],
+    "multi": true,
+    "explanation": "AWS is responsible for 'security of the cloud'. This includes protecting physical infrastructure and data centers from environmental hazards, and maintaining host hardware and hypervisors. Patching guest operating systems, configuring firewalls (like WAF), and managing customer data backups/replication inside resources are customer responsibilities under the Shared Responsibility Model."
+  },
+  {
+    "id": "td1-7",
+    "domain": 1,
+    "question": "How is expense shifted when moving from traditional servers to the Cloud?",
+    "options": [
+      "Capital expense is traded for variable expense",
+      "Operational expense is traded for variable expense",
+      "Capital expense is traded for operational expense",
+      "Variable expense is traded for capital expense"
+    ],
+    "correct": 0,
+    "multi": false,
+    "explanation": "Cloud computing trades upfront capital expense (CapEx) for variable/operational pay-as-you-go expense (OpEx), allowing you to pay only for the resources you consume and scale dynamically."
+  },
+  {
+    "id": "td1-8",
+    "domain": 1,
+    "question": "Which statement below is correct regarding the components of the AWS Global Infrastructure?",
+    "options": [
+      "An Availability Zone contains multiple AWS Regions.",
+      "An AWS Region contains multiple Availability Zones.",
+      "An edge location contains multiple AWS Regions.",
+      "An Availability Zone contains edge locations."
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "An AWS Region is a physical location in the world where AWS has multiple Availability Zones. Each AZ consists of one or more discrete data centers. Edge locations are standalone infrastructure sites used by CloudFront to cache content closer to users."
+  },
+  {
+    "id": "td1-9",
+    "domain": 1,
+    "question": "A company is in the process of choosing the most suitable AWS Region to migrate its applications. Which of the following factors should they consider? (Select TWO.)",
+    "options": [
+      "Enhance customer experiences by reducing latency to users.",
+      "Proximity to your end-users for on-site visits to your on-premises data center.",
+      "Potential volume discounts for the specific AWS Region.",
+      "Support country-specific data sovereignty compliance requirements.",
+      "Consider Availability Zone security and utilize AWS Security Hub for centralized security monitoring."
+    ],
+    "correct": [0, 3],
+    "multi": true,
+    "explanation": "The key factors in selecting an AWS Region are user latency reduction (placing applications geographically close to end-users) and meeting legal/compliance requirements for data sovereignty (retaining data within specific borders). On-site visits, region-specific volume discounts, and AZ-specific security monitors do not drive region selection."
+  },
+  {
+    "id": "td1-10",
+    "domain": 1,
+    "question": "Which AWS service is suitable for launching a highly scalable MySQL OLTP database?",
+    "options": [
+      "Amazon Aurora",
+      "Amazon Redshift",
+      "Amazon Timestream",
+      "Amazon DynamoDB"
+    ],
+    "correct": 0,
+    "multi": false,
+    "explanation": "Amazon Aurora is a fully managed, MySQL- and PostgreSQL-compatible relational database built for the cloud, specifically designed for highly scalable Online Transaction Processing (OLTP) workloads. Redshift is for OLAP data warehousing, DynamoDB is a NoSQL/document store, and Timestream is for time-series data."
+  },
+  {
+    "id": "td1-11",
+    "domain": 1,
+    "question": "Which of the following cloud design principles supports growth in users, traffic, or data size with no drop-in performance?",
+    "options": [
+      "Decouple your components",
+      "Go Serverless to reduce compute footprint",
+      "Design for failure",
+      "Scalability"
+    ],
+    "correct": 3,
+    "multi": false,
+    "explanation": "Scalability is the design principle that ensures an architecture can grow seamlessly to support increasing demand (users, traffic, or data volume) without a drop in system performance, scaling resources in a linear manner."
+  },
+  {
+    "id": "td1-12",
+    "domain": 1,
+    "question": "A startup is developing a mobile app with a database service to store user data. The app is expected to grow rapidly, and the company needs a flexible and scalable database service that can handle unpredictable traffic and workload spikes. Which service should the startup use if they need a scalable, fast, and flexible non-relational database service?",
+    "options": [
+      "Amazon RDS",
+      "Amazon Redshift",
+      "Amazon DynamoDB",
+      "Amazon S3"
+    ],
+    "correct": 2,
+    "multi": false,
+    "explanation": "Amazon DynamoDB is a fully managed NoSQL/non-relational database service providing fast, predictable single-digit millisecond latency performance at any scale, making it ideal for rapid growth and unpredictable traffic spikes. RDS is relational, Redshift is for OLAP warehousing, and S3 is object storage."
+  },
+  {
+    "id": "td1-13",
+    "domain": 1,
+    "question": "Which of the following is a fully managed database in AWS that can be used to store JSON documents?",
+    "options": [
+      "Amazon ElastiCache",
+      "Amazon Aurora",
+      "Amazon DynamoDB",
+      "Amazon Redshift"
+    ],
+    "correct": 2,
+    "multi": false,
+    "explanation": "Amazon DynamoDB is a key-value and document database that natively supports storing and querying JSON-formatted documents. Aurora is relational, ElastiCache is an in-memory caching engine, and Redshift is a columnar analytics warehouse."
+  },
+  {
+    "id": "td1-14",
+    "domain": 1,
+    "question": "Which of the following is used to enable instances in the public subnet to connect to the public Internet?",
+    "options": [
+      "NAT instance",
+      "NAT Gateway",
+      "Internet Gateway",
+      "API Gateway"
+    ],
+    "correct": 2,
+    "multi": false,
+    "explanation": "An Internet Gateway (IGW) is attached to a VPC to enable direct communication between resources in a public subnet and the public internet. NAT Gateways and NAT Instances allow private subnet resources to reach the internet while blocking inbound connections from the internet."
+  },
+  {
+    "id": "td1-15",
+    "domain": 1,
+    "question": "The use of multi-threading in Amazon S3 requests via the Multipart Upload API is an example of which AWS cloud best practice?",
+    "options": [
+      "Implement elasticity.",
+      "Think parallel.",
+      "Allow for evolutionary architectures.",
+      "Decouple your components."
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "The 'Think Parallel' design principle emphasizes leveraging concurrent request parallelization and multi-threading (such as parallel uploads via S3 Multipart Upload API) to maximize data transfer performance and overall throughput."
+  },
+  {
+    "id": "td1-16",
+    "domain": 1,
+    "question": "Which of the following infrastructure correlates to a VPC’s subnet?",
+    "options": [
+      "Edge location",
+      "Availability zone",
+      "AWS Region",
+      "Server"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Each VPC subnet resides entirely within exactly one Availability Zone (AZ) and cannot span multiple zones. Availability Zones consist of isolated data centers to ensure high availability and fault tolerance."
+  },
+  {
+    "id": "td1-17",
+    "domain": 1,
+    "question": "What does AWS do when a storage device reaches the end of its lifespan?",
+    "options": [
+      "AWS wipes the drives and sends it back to the manufacturer to procure a new one",
+      "AWS follows a strict decommissioning process as described in compliance procedures",
+      "AWS simply wipes the device and disposes it",
+      "AWS archives the device in case customers request their data again"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "When storage media reaches its end of life, AWS follows strict decommissioning procedures detailed in NIST 800-88 standards to securely destroy data before any device leaves AWS physical control."
+  },
+  {
+    "id": "td1-18",
+    "domain": 1,
+    "question": "What is the right arrangement of the AWS Global Infrastructure components according to their geographical coverage area size, in descending order?",
+    "options": [
+      "Regions, Edge Locations, Availability Zones",
+      "Regions, Availability Zones, Edge Locations"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Descending by geographical size: Regions (global geographical areas consisting of multiple isolated zones), Availability Zones (isolated partitions containing physical data centers within a Region), and Edge Locations (independent sites caching content via CloudFront)."
+  },
+  {
+    "id": "td1-19",
+    "domain": 1,
+    "question": "Which of the following are defined as global services in AWS? (Select TWO.)",
+    "options": [
+      "AWS Batch",
+      "Amazon CloudFront",
+      "Amazon DynamoDB",
+      "Amazon RDS",
+      "AWS Identity and Access Management"
+    ],
+    "correct": [1, 4],
+    "multi": true,
+    "explanation": "Amazon CloudFront and AWS Identity and Access Management (IAM) are global services spanning all regions. AWS Batch, RDS, and DynamoDB are regional in scope."
+  },
+  {
+    "id": "td1-20",
+    "domain": 1,
+    "question": "Which of the following are pillars of the AWS Well-Architected Framework? (Select TWO.)",
+    "options": [
+      "High Availability",
+      "Sustainability",
+      "Performance Efficiency",
+      "Agility",
+      "Scalability"
+    ],
+    "correct": [1, 2],
+    "multi": true,
+    "explanation": "The six pillars of the AWS Well-Architected Framework are: Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability. High Availability, Agility, and Scalability are architecture qualities but not formal framework pillars."
+  },
+  {
+    "id": "td1-21",
+    "domain": 1,
+    "question": "Which of the following is one of the benefits of migrating your systems from an on-premises data center to AWS Cloud?",
+    "options": [
+      "Completely eliminates the administrative overhead of patching the guest operating system of their EC2 instances",
+      "Enables the customer to focus on business activities rather than on the heavy lifting of racking, stacking, and powering servers",
+      "Eliminates the need for the customer to implement client-side or service-side encryption for their data",
+      "Enables the customer to eliminate high IT infrastructure costs since cloud computing is absolutely free"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Migrating to AWS shifts the burden of physical hardware setup, server racking, stacking, and power management to AWS, letting customers focus on differentiating business operations. Guest OS patching, encryption implementation, and pay-as-you-go costs remain customer concerns."
+  },
+  {
+    "id": "td1-22",
+    "domain": 1,
+    "question": "Which of the following is not a standard design principle when designing systems in AWS?",
+    "options": [
+      "Loose coupling",
+      "Design for failure",
+      "Servers, not services",
+      "Disposable resources instead of fixed servers"
+    ],
+    "correct": 2,
+    "multi": false,
+    "explanation": "The correct AWS design principle is 'Services, not servers' (leveraging managed services over self-managed server resources). Loose coupling, designing for failure, and disposable resources are standard AWS architectural practices."
+  },
+  {
+    "id": "td1-23",
+    "domain": 1,
+    "question": "A company is planning to deploy a high-frequency trading (HFT) application that will store constantly changing financial data in AWS and require low-latency access. Which AWS services should be used? (Select TWO.)",
+    "options": [
+      "Amazon S3 Glacier Instant Retrieval",
+      "AWS Snowball Edge",
+      "Amazon EFS",
+      "Amazon RDS",
+      "Amazon S3"
+    ],
+    "correct": [2, 3],
+    "multi": true,
+    "explanation": "For fast read/write workloads with frequently changing data, Amazon EFS (elastic shared file system) and Amazon RDS (managed relational database) are appropriate low-latency storage choices. Glacier is for archives, Snowball is physical migration, and S3 has higher latency as a global object store outside a VPC."
+  },
+  {
+    "id": "td1-24",
+    "domain": 1,
+    "question": "An e-commerce company is considering migrating its website to the AWS Cloud to improve its scalability and reduce costs. Which statements explain the business value of migration to the AWS Cloud? (Select TWO.)",
+    "options": [
+      "Companies that migrate to the AWS Cloud reduce IT costs related to infrastructure, freeing the budget for reinvestment in other areas.",
+      "Companies migrating to AWS Cloud can benefit from improving service level agreements (SLAs) while reducing risk and unplanned outages.",
+      "Migrating to AWS Cloud offers the e-commerce company access to advanced analytics and machine learning capabilities.",
+      "The migration of enterprise applications to the AWS Cloud makes these applications automatically available on mobile devices.",
+      "Applications are modernized because migration to the AWS Cloud requires companies to rearchitect and rewrite all enterprise applications."
+    ],
+    "correct": [0, 1],
+    "multi": true,
+    "explanation": "Moving to the cloud reduces physical IT infrastructure capital expenses and enhances overall service level agreements (SLAs) with lower operational risk and unplanned downtime. Migration does not automatically translate apps to mobile, nor does it require rewriting all systems."
+  },
+  {
+    "id": "td1-25",
+    "domain": 1,
+    "question": "A company used to experience delays in developing new services due to the time it took to procure and set up on-premises servers. They recently migrated their infrastructure to the AWS Cloud. This change has allowed them to spin up testing environments in just days, accelerating the time to market for their services. Which of the following AWS Cloud benefits is showcased in this particular scenario?",
+    "options": [
+      "Elasticity",
+      "Agility",
+      "Cost savings",
+      "Deploy globally in minutes"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "This scenario demonstrates operational agility—the speed and efficiency with which developers can provision testing/development resources in days instead of waiting weeks for physical hardware procurement, thus accelerating time-to-market."
+  },
+  {
+    "id": "td1-26",
+    "domain": 1,
+    "question": "Which of the following options is an AWS Cloud Adoption Framework (CAF) perspective specifically tailored to ensure your cloud investments expedite your digital transformation goals and business outcomes?",
+    "options": [
+      "Operations perspective",
+      "Business perspective",
+      "Governance perspective",
+      "People perspective"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "The AWS CAF Business Perspective ensures that cloud investments align with organizational strategic plans to expedite digital transformation and maximize business outcomes. Governance, People, and Operations focus on policies, organizational skills, and operational SLAs respectively."
+  },
+  {
+    "id": "td1-27",
+    "domain": 1,
+    "question": "Which of the following perspective includes the foundational capabilities of the AWS Cloud Adoption Framework (AWS CAF)?",
+    "options": [
+      "Sustainability",
+      "Security",
+      "Scalability",
+      "Reliability"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Security is a foundational perspective of the AWS CAF (along with Business, People, Governance, Platform, and Operations). Sustainability, Scalability, and Reliability are important design principles/pillars but are not AWS CAF perspectives."
+  },
+  {
+    "id": "td1-28",
+    "domain": 1,
+    "question": "What cloud computing model deals with services such as EC2 instances?",
+    "options": [
+      "SaaS",
+      "IaaS",
+      "DBaaS",
+      "PaaS"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Infrastructure as a Service (IaaS) provides physical or virtual servers, networking, and storage blocks where you have full control over OS and applications. EC2 is the quintessential IaaS offering in AWS."
+  },
+  {
+    "id": "td1-29",
+    "domain": 1,
+    "question": "An organization would like to boost productivity by improving business communication channels and customer service experience. Which of the following AWS applications would be suggested? (Select TWO.)",
+    "options": [
+      "AWS Transfer Family",
+      "AWS Marketplace",
+      "Amazon Connect",
+      "Amazon Workspaces",
+      "Amazon Chime"
+    ],
+    "correct": [2, 4],
+    "multi": true,
+    "explanation": "Amazon Chime provides high-quality communications (meetings, video, chat) inside and outside the company. Amazon Connect is an easy-to-use omnichannel cloud contact center. Together they streamline business communications and customer support."
+  },
+  {
+    "id": "td1-30",
+    "domain": 1,
+    "question": "What service provides the lowest-cost storage option for retaining database backups, which also allows occasional data retrieval in minutes, and can be used with Lifecycle policies to automatically move backups to the most cost-effective tier?",
+    "options": [
+      "Amazon EFS",
+      "Amazon S3 Glacier Flexible Retrieval",
+      "Amazon S3",
+      "Amazon EBS"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Amazon S3 Glacier Flexible Retrieval offers the lowest-cost storage tier for long-term database backups that can tolerate occasional retrieval delays from minutes to hours. S3 Standard is more expensive, EBS is block-based, and EFS is file system storage."
+  },
+  {
+    "id": "td1-31",
+    "domain": 1,
+    "question": "Which of the following cloud best practices reinforces the use of the Service-Oriented Architecture (SOA) design principle?",
+    "options": [
+      "Decouple your components.",
+      "Implement elasticity.",
+      "Design for failure.",
+      "Think parallel."
+    ],
+    "correct": 0,
+    "multi": false,
+    "explanation": "Decoupling components isolates layers so they operate asynchronously without direct dependencies, reinforcing the Service-Oriented Architecture (SOA) design principle and enhancing scaling capability."
+  },
+  {
+    "id": "td1-32",
+    "domain": 1,
+    "question": "Which AWS solution enables the provisioning of a logically isolated section of the AWS Cloud where AWS resources can be launched, and where you can configure a Route table to manage traffic flow?",
+    "options": [
+      "Amazon EC2",
+      "Amazon VPC",
+      "Internet gateway",
+      "AWS Elastic Beanstalk"
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Amazon VPC lets you provision a logically isolated section of the AWS Cloud to launch resources in your own defined virtual network, giving you control over IP ranges, subnets, route tables, and gateways."
+  },
+  {
+    "id": "td1-33",
+    "domain": 1,
+    "question": "Which of the following is the responsibility of the customer in the AWS cloud? (Select TWO.)",
+    "options": [
+      "Managing data stored in the AWS resources",
+      "Managing users in their AWS account",
+      "Disposal of disk drives",
+      "Upgrading chipsets to the latest commercially available product",
+      "Ensuring that AWS services comply with the standards required of them"
+    ],
+    "correct": [0, 1],
+    "multi": true,
+    "explanation": "According to the AWS Shared Responsibility Model, customer responsibilities ('security in the cloud') include managing user identities/access (IAM) and securing stored data. Physical hardware controls, chipset upgrades, and compliance auditing are managed entirely by AWS."
+  },
+  {
+    "id": "td1-34",
+    "domain": 1,
+    "question": "Which of the following are regarded as regional services in AWS? (Select TWO.)",
+    "options": [
+      "Amazon EFS",
+      "AWS Security Token Service",
+      "AWS Billing Conductor",
+      "Amazon EC2",
+      "AWS Batch"
+    ],
+    "correct": [0, 4],
+    "multi": true,
+    "explanation": "Amazon EFS and AWS Batch are regional services. AWS STS and AWS Billing Conductor are global services, and Amazon EC2 is a zonal service (instances are tied to specific Availability Zones, though security groups and AMIs are regional)."
+  },
+  {
+    "id": "td1-35",
+    "domain": 1,
+    "question": "A company wants to launch a Microsoft SQL Server database in AWS. The database instance should only be managed by the company’s DBA and must be accessible via RDP. A standard license for SQL Server is required but the company is not yet sure how much CPU and memory to allocate to the database. Which option gives the most convenience and flexibility to determine the best database size while still being cost-effective?",
+    "options": [
+      "Launch an RDS instance that runs MS SQL Server Standard. Purchase a Standard MSSQL license and store it in the AWS Managed Services (AMS).",
+      "Use a Windows Server with SQL Server Standard bundled AMI so you won’t need to buy and manage your own license.",
+      "Launch an EC2 instance and install MS SQL Server. Purchase a Standard MSSQL license from Microsoft and apply it to the database you installed.",
+      "Launch an Amazon Aurora database that runs MS SQL Server. Buy a Standard MSSQL license from the AWS License Manager service."
+    ],
+    "correct": 1,
+    "multi": false,
+    "explanation": "Launching Amazon EC2 using a Windows Server AMI with SQL Server Standard bundled avoids the need to purchase/manage SQL licenses separately, allows direct RDP access (unlike RDS), and offers full flexibility to change instance classes on a pay-as-you-go basis. Aurora does not support SQL Server."
   }
 ];
 export const domain1Questions = allQuestions.filter(q => q.domain === 1);

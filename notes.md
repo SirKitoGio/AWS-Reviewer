@@ -96,6 +96,41 @@ The CAF 3.0 provides a structured approach to digital transformation, evolving f
 * Automation: Using AWS CloudFormation (Infrastructure as Code) to provision resources repeatably.
 * Migration Tools: Using AWS Snowball for physical data transfer or Database Replication for minimal downtime.
 
+2.5 Advanced Infrastructure, Design Principles & Service Scopes
+
+* Design Principles & Best Practices:
+  * Services, Not Servers: Leverage managed and serverless resources (like Amazon Aurora, DynamoDB) to focus on product features instead of racking, stacking, and maintaining physical servers.
+  * Think Parallel: Parallelize request threads (e.g., S3 Multipart Upload API) to maximize data transfer performance and overall throughput.
+  * Decouple Components: Use loose coupling (e.g., SQS messaging queues) to isolate layers so they interact asynchronously without direct dependencies, reinforcing Service-Oriented Architecture (SOA) principles.
+* Service Scopes & Boundaries:
+  * VPC Subnet Bounds: Each subnet must reside entirely within exactly one Availability Zone (AZ) and cannot span multiple AZs, protecting resources from single-point-of-failure events.
+  * Global Services: Spans all regions (e.g., IAM, Route 53, CloudFront, STS, AWS Billing Conductor).
+  * Regional Services: Bound to a single Region (e.g., RDS, DynamoDB, Amazon EFS, AWS Batch).
+  * Zonal Services: Tied to a single Availability Zone (e.g., EC2 instances, EBS volumes). Note: EBS snapshots are regional.
+  * Region Selection Criteria: Choose regions based on Latency (proximity to users) and Data Sovereignty/Compliance (legal requirements).
+* Storage Lifespan & Decommissioning Standards:
+  * AWS decommissions end-of-life media securely using standards aligned with NIST 800-88 compliance before physical disposal or reuse.
+* Database Models & Critical Comparisons:
+  * Amazon Aurora: Highly scalable MySQL- and PostgreSQL-compatible relational (OLTP) database that auto-heals and replicates data across 3 AZs.
+  * Amazon DynamoDB: Fully managed NoSQL database providing fast, predictable single-digit millisecond latency for key-value and JSON documents.
+  * Amazon Redshift: Columnar database built for Online Analytical Processing (OLAP) and enterprise business intelligence.
+* Cloud Adoption Framework (CAF) Perspectives:
+  * Business Perspective: ROI, strategy, portfolio planning, and digital transformation outcomes.
+  * Security Perspective: Foundations of compliance, identity access control, threat detection, infrastructure protection, data protection, and incident response.
+* Shared Controls & Infrastructure Patches:
+  * AWS patches host hypervisors & physical infrastructure, while customers patch guest OS (e.g., EC2 guest operating systems and databases run on EC2) and applications.
+* Amazon Chime & Amazon Connect:
+  * Amazon Chime: Productivity application for meetings, video conferencing, and chat.
+  * Amazon Connect: Omnichannel cloud contact center with AI integration (like Amazon Lex) for automatic call/query routing.
+
+Exam Tips:
+* If a question asks which service spans all regions or has a global list, watch for STS, IAM, Route 53, and Billing Conductor.
+* Subnets are STRICTLY bound to a single AZ. They can NEVER span multiple AZs.
+* Relational DBs (OLTP) like Aurora are for transactions; NoSQL key-value/document DBs like DynamoDB are for quick scale/flexibility; columnar DBs (OLAP) like Redshift are for complex analytical queries.
+* AWS decommissions old media using NIST 800-88 standards to prevent leakage.
+* AWS patches the hypervisor; you patch the guest operating system (guest OS) running on EC2.
+
+
 
 --------------------------------------------------------------------------------
 

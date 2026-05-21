@@ -14,6 +14,7 @@ function cn(...inputs: ClassValue[]) {
 
 const navItems = [
   { label: "Home", href: "/", icon: Cloud },
+  { label: "Study Plan", href: "/plan", icon: Lightning },
   { label: "Study", href: "/study", icon: BookOpen },
   { label: "Tips", href: "/tips", icon: Lightbulb },
   { label: "Full Exam", href: "/quiz", icon: GraduationCap },

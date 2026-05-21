@@ -825,6 +825,53 @@ DynamoDB, AWS is responsible for patching the database engine. If you run
 a database on EC2, you are responsible for patching. This connects directly to  
 18AWS CLF-C02 Study Guide CHAPTER 2\. CLOUD CONCEPTS  
 the Shared Responsibility Model (covered in Domain 2).  
+
+2.5 Advanced Infrastructure, Design Principles & Service Scopes
+
+In this section, we examine key cloud concepts that form a baseline for advanced architectural decisions, resource limits, and service comparisons tested on the CLF-C02.
+
+2.5.1 Cloud Design Principles & Best Practices
+Building and operating solutions in the cloud requires adopting key architectural best practices. These principles ensure scalability, loose coupling, and maximum efficiency:
+• Services, Not Servers: Leverage managed and serverless resources (like Amazon Aurora or Amazon DynamoDB) to focus on code and product features instead of racking, stacking, powering, and maintaining physical server infrastructure.
+• Think Parallel: Maximize performance by parallelizing requests and computations. A core application of this is the S3 Multipart Upload API, which uploads large objects in parts concurrently, significantly speeding up file transfers.
+• Decouple Components: Restructure monolithic applications into loose, asynchronously coupled layers. By leveraging messaging queues like Amazon SQS, components can interact without having dependencies on each other's status or availability.
+
+2.5.2 AWS Service Scopes & Infrastructure Boundaries
+AWS resource boundaries define where services operate and how they scale:
+• VPC Subnet Boundaries: A subnet resides strictly within a single Availability Zone (AZ). It cannot span multiple AZs. This design safeguards resources from multi-AZ failures.
+• Global Services: Services whose control planes span all AWS regions. Examples include IAM, Route 53, Amazon CloudFront, AWS STS (Security Token Service), and AWS Billing Conductor.
+• Regional Services: Services that operate within a specific region. Examples include Amazon RDS, Amazon DynamoDB, Amazon EFS, and AWS Batch.
+• Zonal Services: Tied to a single Availability Zone. An example is Amazon EBS volumes and EC2 instances. Note that while EBS volumes are zonal, their snapshots are regional.
+• Region Selection Criteria: Always evaluate region placement based on Latency (proximity to your end-users) and Data Sovereignty/Compliance (ensuring data resides in specific legal jurisdictions).
+
+2.5.3 Secure Storage Lifespan & Decommissioning
+• Secure Decommissioning Standards: AWS is responsible for physical media disposal. When storage devices reach their end-of-life or are decommissioned, AWS uses strict methods aligned with NIST SP 800-88 guidelines to ensure customer data is securely destroyed and cannot be recovered before the media is physically reused or destroyed.
+
+2.5.4 Relational, NoSQL, and Columnar Database Choices
+Choosing the correct database model is critical for performance and cost:
+• Amazon Aurora: A highly scalable MySQL- and PostgreSQL-compatible relational (OLTP) database. It is designed to automatically replicate data across 3 AZs and features self-healing storage capabilities.
+• Amazon DynamoDB: A fully managed NoSQL key-value and JSON document database that provides predictable, single-digit millisecond latency at any scale.
+• Amazon Redshift: A columnar storage database optimized for Online Analytical Processing (OLAP), data warehousing, and complex business intelligence queries.
+
+2.5.5 AWS Cloud Adoption Framework (CAF) Core Perspectives
+The CAF helps organisations map out digital transformation strategies across six perspectives. The CCP exam frequently tests two key perspectives:
+• Business Perspective: Aligns strategic business goals with cloud investments, focusing on strategy, ROI, portfolio management, and business value.
+• Security Perspective: Focuses on establishing compliance, IAM identity controls, threat detection, infrastructure protection, data protection, and incident response.
+
+2.5.6 Shared Controls and Infrastructure Patching
+• Host vs. Guest Patching: Under the Shared Responsibility model, AWS is responsible for applying security updates and patches to the EC2 hypervisor and physical hosts. The customer, however, is responsible for patching the guest operating system (guest OS) and any applications (e.g., databases) they run on virtual instances.
+
+2.5.7 Amazon Chime and Amazon Connect
+• Amazon Chime: A managed enterprise communication and productivity service that provides meetings, video calls, and business chat.
+• Amazon Connect: An omnichannel cloud-based contact center service that makes it easy to set up customer help centers, integrate chat/voice channels, and leverage automated routing via services like Amazon Lex.
+
+Exam Tips
+• A subnet is bound to EXACTLY one AZ. It can never span multiple AZs.
+• IAM, Route 53, CloudFront, STS, and Billing Conductor are Global services. RDS, DynamoDB, and EFS are Regional services.
+• AWS uses NIST 800-88 guidelines for decommissioning storage media.
+• Amazon Redshift is Columnar/OLAP for analytical queries; Amazon Aurora is Relational/OLTP for transactional databases; Amazon DynamoDB is NoSQL for flexible key-value data.
+• AWS patches the hypervisor host; you patch the Guest OS inside EC2.
+
 19Chapter 3  
 Security and Compliance  
 Domain 2 Overview  
